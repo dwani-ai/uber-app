@@ -85,11 +85,11 @@ export function ProjectEmbedPage() {
           />
         </div>
       ) : (
-        <div className="embed-placeholder">
-          <p>
-            No <span className="mono">liveUrl</span> for this project. Add a hosted URL in{" "}
-            <span className="mono">projects.v1.json</span> (or regenerate from{" "}
-            <span className="mono">gen-manifest.mjs</span>) to embed it here.
+        <div className="embed-placeholder embed-coming-soon">
+          <p className="coming-soon-title">Coming soon</p>
+          <p className="muted-note">
+            This project is not on the simple UberApp deploy list yet (custom Docker / stack
+            TBD). Open the repo for docs and source.
           </p>
           <p>
             <a href={project.docsUrl} target="_blank" rel="noopener noreferrer">

@@ -14,12 +14,15 @@ Everything is wired in **one project**: Node scripts under [`scripts/`](scripts/
 | `npm run install:web` | `npm ci` in `web/` |
 | `npm run manifest` | Regenerate `web/public/projects.v1.json` (reads **`DOMAIN`** from `.env`) |
 | `npm run validate` | `docker compose config` (includes `docker-compose.apps.yml` if present) |
+| `npm run compose:apps` | Regenerate [`docker-compose.apps.yml`](docker-compose.apps.yml) (only [`simple-deploy-repos.mjs`](scripts/lib/simple-deploy-repos.mjs)) |
 | `npm run stubs` | Regenerate [`traefik/dynamic/projects-stubs.yml`](traefik/dynamic/projects-stubs.yml) (needs `DOMAIN`; see below) |
-| `npm run deploy` | **Full pipeline:** `install:web` → manifest → **stub routes** → compose validate → **build** → **`docker compose up -d`** |
+| `npm run deploy` | **Full pipeline:** `install:web` → manifest → **`compose:apps`** (simple-deploy list only) → stubs → compose validate → **build** → **`docker compose up -d`** |
 | `npm run deploy:build` | Same as deploy but **no** `up` (images only) |
 | `npm run ci` | Same checks as GitHub Actions (needs Docker on the machine) |
 
 Equivalent: `make deploy`, `make manifest`, `make ci`, etc.
+
+**Simple deploy vs coming soon:** UberApp `liveUrl` and generated [`docker-compose.apps.yml`](docker-compose.apps.yml) only include repos listed in [`scripts/lib/simple-deploy-repos.mjs`](scripts/lib/simple-deploy-repos.mjs) (clone + root `npm run build` → nginx). Every other catalog row has **`liveUrl: null`**, shows **Coming soon** in the hub, and is served by the **Traefik stub** only until you add that repo to the list or give it a custom compose service.
 
 **First-time server deploy:**
 

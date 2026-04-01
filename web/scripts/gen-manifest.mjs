@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { isSimpleDeployRepo } from "../../scripts/lib/simple-deploy-repos.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -124,10 +125,14 @@ function uberappServiceUrl(hostLabel, domain) {
 }
 
 /**
- * Every row gets a liveUrl under UberApp; no GitHub Pages / external hosting.
+ * liveUrl only for {@link isSimpleDeployRepo} — others are "coming soon" (null).
  * @param {string} repo
+ * @returns {string | null}
  */
 function liveUrlForRepo(repo) {
+  if (!isSimpleDeployRepo(repo)) {
+    return null;
+  }
   const domain = effectiveDeployDomain();
   if (repo === "dwani-ai/uber-app") {
     return uberappServiceUrl("hub", domain);

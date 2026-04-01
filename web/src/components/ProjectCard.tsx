@@ -26,13 +26,23 @@ export function ProjectCard({ project }: Props) {
         <p className="desc" style={{ opacity: 0.5 }}>
           {hasLive
             ? "Embedded in UberApp — use Run in UberApp."
-            : "Add liveUrl to embed a hosted preview here."}
+            : "Coming soon — hosted run is not wired for this project yet."}
         </p>
       )}
       <div className="actions">
-        <Link className="btn-live" to={`/run/${project.id}`}>
-          Run in UberApp
-        </Link>
+        {hasLive ? (
+          <Link className="btn-live" to={`/run/${project.id}`}>
+            Run in UberApp
+          </Link>
+        ) : (
+          <span
+            className="btn-live btn-live-soon"
+            title="Not available until this project is deployed in UberApp"
+            aria-disabled="true"
+          >
+            Run in UberApp
+          </span>
+        )}
         {hasLive ? (
           <a
             className="btn-doc"
@@ -43,7 +53,11 @@ export function ProjectCard({ project }: Props) {
           >
             New tab
           </a>
-        ) : null}
+        ) : (
+          <span className="btn-doc btn-soon" title="Not deployed in UberApp yet">
+            Coming soon
+          </span>
+        )}
         <a
           className="btn-doc"
           href={project.docsUrl}

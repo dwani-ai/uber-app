@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 /**
- * Writes docker-compose.apps.yml — one service per catalog project (clone + build → nginx).
+ * Writes docker-compose.apps.yml — one service per "simple deploy" catalog repo
+ * (see scripts/lib/simple-deploy-repos.mjs). Others stay stub-only until you extend the list.
  * dwani-ai-uber-app reuses the hub image (same Dockerfile as service `hub`) on a second hostname.
  */
 import { writeFileSync, readFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { applyEnv } from "./lib/load-env.mjs";
+import { isSimpleDeployRepo } from "./lib/simple-deploy-repos.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 applyEnv(root);
@@ -39,7 +41,7 @@ for (const p of projects) {
   if (!id || !repo) continue;
 
   // Same static hub as service `hub`; extra hostname matches catalog id / liveUrl consistency.
-  if (id === "dwani-ai-uber-app") {
+  if (id === "dwani-ai-uber-app" && isSimpleDeployRepo(repo)) {
     lines.push(`  dwani-ai-uber-app:`);
     lines.push(`    build: .`);
     lines.push(`    image: uber-app-hub:local`);
@@ -58,6 +60,10 @@ for (const p of projects) {
     );
     lines.push("");
     count++;
+    continue;
+  }
+
+  if (!isSimpleDeployRepo(repo)) {
     continue;
   }
 
@@ -88,4 +94,10 @@ for (const p of projects) {
 
 const outFile = join(root, "docker-compose.apps.yml");
 writeFileSync(outFile, lines.join("\n") + "\n", "utf8");
-console.log("Wrote", outFile, "—", count, "catalog service(s).");
+console.log(
+  "Wrote",
+  outFile,
+  "—",
+  count,
+  "simple-deploy service(s); other catalog ids use Traefik stubs."
+);

@@ -178,10 +178,12 @@ header p {
   filter: brightness(1.08);
 }
 
-.btn-live[disabled] {
+.btn-live[disabled],
+.btn-live.btn-live-soon {
   opacity: 0.45;
   cursor: not-allowed;
   filter: none;
+  pointer-events: none;
 }
 
 .btn-doc {
@@ -192,6 +194,22 @@ header p {
 
 .btn-doc:hover {
   border-color: var(--muted);
+}
+
+.btn-doc.btn-soon {
+  opacity: 0.55;
+  cursor: default;
+  pointer-events: none;
+}
+
+.coming-soon-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+}
+
+.embed-coming-soon .muted-note {
+  margin-top: 0;
 }
 
 .error {

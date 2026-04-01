@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import type { Project } from "../types";
 
 interface Props {
@@ -23,29 +24,26 @@ export function ProjectCard({ project }: Props) {
         <p className="desc">{project.description}</p>
       ) : (
         <p className="desc" style={{ opacity: 0.5 }}>
-          Portfolio entry — set <span className="mono">liveUrl</span> when deployed.
+          {hasLive
+            ? "Embedded in UberApp — use Run in UberApp."
+            : "Add liveUrl to embed a hosted preview here."}
         </p>
       )}
       <div className="actions">
+        <Link className="btn-live" to={`/run/${project.id}`}>
+          Run in UberApp
+        </Link>
         {hasLive ? (
           <a
-            className="btn-live"
+            className="btn-doc"
             href={project.liveUrl!}
             target="_blank"
             rel="noopener noreferrer"
+            title="Open deployment in a new tab"
           >
-            Live
+            New tab
           </a>
-        ) : (
-          <button
-            type="button"
-            className="btn-live"
-            disabled
-            title="No deployment URL yet — set liveUrl in the manifest"
-          >
-            Coming soon
-          </button>
-        )}
+        ) : null}
         <a
           className="btn-doc"
           href={project.docsUrl}

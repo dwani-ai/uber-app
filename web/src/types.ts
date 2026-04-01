@@ -2,6 +2,8 @@ export type ProjectCategory = "web" | "ai";
 
 export interface Project {
   id: string;
+  /** DNS label for Traefik: <subdomain>.${DOMAIN}; usually equals id */
+  subdomain?: string;
   title: string;
   repo: string;
   categories: ProjectCategory[];

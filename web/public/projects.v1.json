@@ -11,7 +11,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/dwani-ai/agent-recipes"
+      "docsUrl": "https://github.com/dwani-ai/agent-recipes",
+      "subdomain": "dwani-ai-agent-recipes"
     },
     {
       "id": "dwani-ai-artha",
@@ -21,8 +22,9 @@
         "web"
       ],
       "description": null,
-      "liveUrl": null,
-      "docsUrl": "https://github.com/dwani-ai/artha"
+      "liveUrl": "https://dwani-ai.github.io/artha/",
+      "docsUrl": "https://github.com/dwani-ai/artha",
+      "subdomain": "dwani-ai-artha"
     },
     {
       "id": "dwani-ai-asr-indic-server",
@@ -33,7 +35,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/dwani-ai/asr-indic-server"
+      "docsUrl": "https://github.com/dwani-ai/asr-indic-server",
+      "subdomain": "dwani-ai-asr-indic-server"
     },
     {
       "id": "dwani-ai-discovery",
@@ -43,8 +46,9 @@
         "web"
       ],
       "description": null,
-      "liveUrl": null,
-      "docsUrl": "https://github.com/dwani-ai/discovery"
+      "liveUrl": "https://dwani-ai.github.io/discovery/",
+      "docsUrl": "https://github.com/dwani-ai/discovery",
+      "subdomain": "dwani-ai-discovery"
     },
     {
       "id": "dwani-ai-docs",
@@ -55,7 +59,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/dwani-ai/docs"
+      "docsUrl": "https://github.com/dwani-ai/docs",
+      "subdomain": "dwani-ai-docs"
     },
     {
       "id": "dwani-ai-docs-indic-server",
@@ -66,7 +71,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/dwani-ai/docs-indic-server"
+      "docsUrl": "https://github.com/dwani-ai/docs-indic-server",
+      "subdomain": "dwani-ai-docs-indic-server"
     },
     {
       "id": "dwani-ai-drishti",
@@ -76,8 +82,9 @@
         "web"
       ],
       "description": null,
-      "liveUrl": null,
-      "docsUrl": "https://github.com/dwani-ai/drishti"
+      "liveUrl": "https://dwani-ai.github.io/drishti/",
+      "docsUrl": "https://github.com/dwani-ai/drishti",
+      "subdomain": "dwani-ai-drishti"
     },
     {
       "id": "dwani-ai-dwani-ai-github-io",
@@ -87,8 +94,9 @@
         "web"
       ],
       "description": null,
-      "liveUrl": null,
-      "docsUrl": "https://github.com/dwani-ai/dwani-ai.github.io"
+      "liveUrl": "https://dwani-ai.github.io/",
+      "docsUrl": "https://github.com/dwani-ai/dwani-ai.github.io",
+      "subdomain": "dwani-ai-dwani-ai-github-io"
     },
     {
       "id": "dwani-ai-dwani-api-server",
@@ -99,7 +107,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/dwani-ai/dwani-api-server"
+      "docsUrl": "https://github.com/dwani-ai/dwani-api-server",
+      "subdomain": "dwani-ai-dwani-api-server"
     },
     {
       "id": "dwani-ai-dwani-server",
@@ -110,7 +119,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/dwani-ai/dwani-server"
+      "docsUrl": "https://github.com/dwani-ai/dwani-server",
+      "subdomain": "dwani-ai-dwani-server"
     },
     {
       "id": "dwani-ai-escape_among_us",
@@ -120,8 +130,9 @@
         "web"
       ],
       "description": null,
-      "liveUrl": null,
-      "docsUrl": "https://github.com/dwani-ai/escape_among_us"
+      "liveUrl": "https://dwani-ai.github.io/escape_among_us/",
+      "docsUrl": "https://github.com/dwani-ai/escape_among_us",
+      "subdomain": "dwani-ai-escape_among_us"
     },
     {
       "id": "dwani-ai-indic-translate-server",
@@ -132,7 +143,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/dwani-ai/indic-translate-server"
+      "docsUrl": "https://github.com/dwani-ai/indic-translate-server",
+      "subdomain": "dwani-ai-indic-translate-server"
     },
     {
       "id": "dwani-ai-llm-indic-server",
@@ -143,7 +155,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/dwani-ai/llm-indic-server"
+      "docsUrl": "https://github.com/dwani-ai/llm-indic-server",
+      "subdomain": "dwani-ai-llm-indic-server"
     },
     {
       "id": "dwani-ai-llm-recipes",
@@ -154,7 +167,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/dwani-ai/llm-recipes"
+      "docsUrl": "https://github.com/dwani-ai/llm-recipes",
+      "subdomain": "dwani-ai-llm-recipes"
     },
     {
       "id": "dwani-ai-sanjeevini",
@@ -165,7 +179,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/dwani-ai/sanjeevini"
+      "docsUrl": "https://github.com/dwani-ai/sanjeevini",
+      "subdomain": "dwani-ai-sanjeevini"
     },
     {
       "id": "dwani-ai-swara",
@@ -175,8 +190,9 @@
         "web"
       ],
       "description": null,
-      "liveUrl": null,
-      "docsUrl": "https://github.com/dwani-ai/swara"
+      "liveUrl": "https://dwani-ai.github.io/swara/",
+      "docsUrl": "https://github.com/dwani-ai/swara",
+      "subdomain": "dwani-ai-swara"
     },
     {
       "id": "dwani-ai-talk",
@@ -186,8 +202,9 @@
         "web"
       ],
       "description": null,
-      "liveUrl": null,
-      "docsUrl": "https://github.com/dwani-ai/talk"
+      "liveUrl": "https://dwani-ai.github.io/talk/",
+      "docsUrl": "https://github.com/dwani-ai/talk",
+      "subdomain": "dwani-ai-talk"
     },
     {
       "id": "dwani-ai-tts-indic-server",
@@ -198,7 +215,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/dwani-ai/tts-indic-server"
+      "docsUrl": "https://github.com/dwani-ai/tts-indic-server",
+      "subdomain": "dwani-ai-tts-indic-server"
     },
     {
       "id": "dwani-ai-uber-app",
@@ -208,8 +226,9 @@
         "web"
       ],
       "description": null,
-      "liveUrl": null,
-      "docsUrl": "https://github.com/dwani-ai/uber-app"
+      "liveUrl": "https://dwani-ai.github.io/uber-app/",
+      "docsUrl": "https://github.com/dwani-ai/uber-app",
+      "subdomain": "dwani-ai-uber-app"
     },
     {
       "id": "dwani-ai-vision_benchmarks",
@@ -220,7 +239,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/dwani-ai/vision_benchmarks"
+      "docsUrl": "https://github.com/dwani-ai/vision_benchmarks",
+      "subdomain": "dwani-ai-vision_benchmarks"
     },
     {
       "id": "dwani-ai-workshop",
@@ -230,8 +250,9 @@
         "web"
       ],
       "description": null,
-      "liveUrl": null,
-      "docsUrl": "https://github.com/dwani-ai/workshop"
+      "liveUrl": "https://dwani-ai.github.io/workshop/",
+      "docsUrl": "https://github.com/dwani-ai/workshop",
+      "subdomain": "dwani-ai-workshop"
     },
     {
       "id": "sachinsshetty-agent-beats-dwani-discovery",
@@ -242,7 +263,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/sachinsshetty/agent-beats-dwani-discovery"
+      "docsUrl": "https://github.com/sachinsshetty/agent-beats-dwani-discovery",
+      "subdomain": "sachinsshetty-agent-beats-dwani-discovery"
     },
     {
       "id": "sachinsshetty-agent-olympics-school",
@@ -253,7 +275,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/sachinsshetty/agent-olympics-school"
+      "docsUrl": "https://github.com/sachinsshetty/agent-olympics-school",
+      "subdomain": "sachinsshetty-agent-olympics-school"
     },
     {
       "id": "sachinsshetty-biryani_bot",
@@ -264,7 +287,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/sachinsshetty/biryani_bot"
+      "docsUrl": "https://github.com/sachinsshetty/biryani_bot",
+      "subdomain": "sachinsshetty-biryani_bot"
     },
     {
       "id": "sachinsshetty-care_scribe",
@@ -275,7 +299,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/sachinsshetty/care_scribe"
+      "docsUrl": "https://github.com/sachinsshetty/care_scribe",
+      "subdomain": "sachinsshetty-care_scribe"
     },
     {
       "id": "sachinsshetty-care_scribe_fe",
@@ -285,8 +310,9 @@
         "web"
       ],
       "description": null,
-      "liveUrl": null,
-      "docsUrl": "https://github.com/sachinsshetty/care_scribe_fe"
+      "liveUrl": "https://sachinsshetty.github.io/care_scribe_fe/",
+      "docsUrl": "https://github.com/sachinsshetty/care_scribe_fe",
+      "subdomain": "sachinsshetty-care_scribe_fe"
     },
     {
       "id": "sachinsshetty-elixir_edge",
@@ -297,7 +323,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/sachinsshetty/elixir_edge"
+      "docsUrl": "https://github.com/sachinsshetty/elixir_edge",
+      "subdomain": "sachinsshetty-elixir_edge"
     },
     {
       "id": "sachinsshetty-faster-whisper-server",
@@ -308,7 +335,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/sachinsshetty/faster-whisper-server"
+      "docsUrl": "https://github.com/sachinsshetty/faster-whisper-server",
+      "subdomain": "sachinsshetty-faster-whisper-server"
     },
     {
       "id": "sachinsshetty-indictrans2",
@@ -319,7 +347,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/sachinsshetty/IndicTrans2"
+      "docsUrl": "https://github.com/sachinsshetty/IndicTrans2",
+      "subdomain": "sachinsshetty-indictrans2"
     },
     {
       "id": "sachinsshetty-inference_hackathon",
@@ -330,7 +359,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/sachinsshetty/inference_hackathon"
+      "docsUrl": "https://github.com/sachinsshetty/inference_hackathon",
+      "subdomain": "sachinsshetty-inference_hackathon"
     },
     {
       "id": "sachinsshetty-ksim",
@@ -341,7 +371,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/sachinsshetty/ksim"
+      "docsUrl": "https://github.com/sachinsshetty/ksim",
+      "subdomain": "sachinsshetty-ksim"
     },
     {
       "id": "sachinsshetty-medagentbench",
@@ -352,7 +383,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/sachinsshetty/MedAgentBench"
+      "docsUrl": "https://github.com/sachinsshetty/MedAgentBench",
+      "subdomain": "sachinsshetty-medagentbench"
     },
     {
       "id": "sachinsshetty-notebooklm",
@@ -363,7 +395,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/sachinsshetty/notebooklm"
+      "docsUrl": "https://github.com/sachinsshetty/notebooklm",
+      "subdomain": "sachinsshetty-notebooklm"
     },
     {
       "id": "sachinsshetty-onwards",
@@ -374,7 +407,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/sachinsshetty/onwards"
+      "docsUrl": "https://github.com/sachinsshetty/onwards",
+      "subdomain": "sachinsshetty-onwards"
     },
     {
       "id": "sachinsshetty-openclaw",
@@ -385,7 +419,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/sachinsshetty/openclaw"
+      "docsUrl": "https://github.com/sachinsshetty/openclaw",
+      "subdomain": "sachinsshetty-openclaw"
     },
     {
       "id": "sachinsshetty-passpredict",
@@ -396,7 +431,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/sachinsshetty/passpredict"
+      "docsUrl": "https://github.com/sachinsshetty/passpredict",
+      "subdomain": "sachinsshetty-passpredict"
     },
     {
       "id": "sachinsshetty-prime-rl",
@@ -407,7 +443,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/sachinsshetty/prime-rl"
+      "docsUrl": "https://github.com/sachinsshetty/prime-rl",
+      "subdomain": "sachinsshetty-prime-rl"
     },
     {
       "id": "sachinsshetty-sanjeevini",
@@ -418,7 +455,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/sachinsshetty/sanjeevini"
+      "docsUrl": "https://github.com/sachinsshetty/sanjeevini",
+      "subdomain": "sachinsshetty-sanjeevini"
     },
     {
       "id": "sachinsshetty-segment-anything-2",
@@ -429,7 +467,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/sachinsshetty/segment-anything-2"
+      "docsUrl": "https://github.com/sachinsshetty/segment-anything-2",
+      "subdomain": "sachinsshetty-segment-anything-2"
     },
     {
       "id": "sachinsshetty-smart_city_hackathon",
@@ -440,7 +479,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/sachinsshetty/smart_city_hackathon"
+      "docsUrl": "https://github.com/sachinsshetty/smart_city_hackathon",
+      "subdomain": "sachinsshetty-smart_city_hackathon"
     },
     {
       "id": "sachinsshetty-thunder-flash",
@@ -451,7 +491,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/sachinsshetty/thunder-flash"
+      "docsUrl": "https://github.com/sachinsshetty/thunder-flash",
+      "subdomain": "sachinsshetty-thunder-flash"
     },
     {
       "id": "sachinsshetty-track-me-not",
@@ -462,7 +503,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/sachinsshetty/track-me-not"
+      "docsUrl": "https://github.com/sachinsshetty/track-me-not",
+      "subdomain": "sachinsshetty-track-me-not"
     },
     {
       "id": "sachinsshetty-ubertax_discovery",
@@ -473,7 +515,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/sachinsshetty/uberTax_discovery"
+      "docsUrl": "https://github.com/sachinsshetty/uberTax_discovery",
+      "subdomain": "sachinsshetty-ubertax_discovery"
     },
     {
       "id": "sachinsshetty-xr_dwani",
@@ -484,7 +527,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/sachinsshetty/xr_dwani"
+      "docsUrl": "https://github.com/sachinsshetty/xr_dwani",
+      "subdomain": "sachinsshetty-xr_dwani"
     },
     {
       "id": "sachinsshetty-xr-hack-gardenia",
@@ -495,7 +539,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/sachinsshetty/xr-hack-gardenia"
+      "docsUrl": "https://github.com/sachinsshetty/xr-hack-gardenia",
+      "subdomain": "sachinsshetty-xr-hack-gardenia"
     },
     {
       "id": "slabstech-audiocraft-tts-server",
@@ -506,7 +551,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/slabstech/audiocraft-tts-server"
+      "docsUrl": "https://github.com/slabstech/audiocraft-tts-server",
+      "subdomain": "slabstech-audiocraft-tts-server"
     },
     {
       "id": "slabstech-bhoomi",
@@ -517,7 +563,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/slabstech/bhoomi"
+      "docsUrl": "https://github.com/slabstech/bhoomi",
+      "subdomain": "slabstech-bhoomi"
     },
     {
       "id": "slabstech-book-nation-building-sir-m-vishveshwaraya",
@@ -527,8 +574,9 @@
         "web"
       ],
       "description": null,
-      "liveUrl": null,
-      "docsUrl": "https://github.com/slabstech/book-nation-building-sir-m-vishveshwaraya"
+      "liveUrl": "https://slabstech.github.io/book-nation-building-sir-m-vishveshwaraya/",
+      "docsUrl": "https://github.com/slabstech/book-nation-building-sir-m-vishveshwaraya",
+      "subdomain": "slabstech-book-nation-building-sir-m-vishveshwaraya"
     },
     {
       "id": "slabstech-dhwani-hf-deploy",
@@ -539,7 +587,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/slabstech/dhwani-hf-deploy"
+      "docsUrl": "https://github.com/slabstech/dhwani-hf-deploy",
+      "subdomain": "slabstech-dhwani-hf-deploy"
     },
     {
       "id": "slabstech-flex-fit-app",
@@ -549,8 +598,9 @@
         "web"
       ],
       "description": null,
-      "liveUrl": null,
-      "docsUrl": "https://github.com/slabstech/flex-fit-app"
+      "liveUrl": "https://slabstech.github.io/flex-fit-app/",
+      "docsUrl": "https://github.com/slabstech/flex-fit-app",
+      "subdomain": "slabstech-flex-fit-app"
     },
     {
       "id": "slabstech-gaganyatri-in",
@@ -560,8 +610,9 @@
         "web"
       ],
       "description": null,
-      "liveUrl": null,
-      "docsUrl": "https://github.com/slabstech/gaganyatri.in"
+      "liveUrl": "https://gaganyatri.in",
+      "docsUrl": "https://github.com/slabstech/gaganyatri.in",
+      "subdomain": "slabstech-gaganyatri-in"
     },
     {
       "id": "slabstech-indicf5",
@@ -572,7 +623,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/slabstech/IndicF5"
+      "docsUrl": "https://github.com/slabstech/IndicF5",
+      "subdomain": "slabstech-indicf5"
     },
     {
       "id": "slabstech-olmocr",
@@ -583,7 +635,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/slabstech/olmocr"
+      "docsUrl": "https://github.com/slabstech/olmocr",
+      "subdomain": "slabstech-olmocr"
     },
     {
       "id": "slabstech-parler-tts-server",
@@ -594,7 +647,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/slabstech/parler-tts-server"
+      "docsUrl": "https://github.com/slabstech/parler-tts-server",
+      "subdomain": "slabstech-parler-tts-server"
     },
     {
       "id": "slabstech-sahana-website",
@@ -604,8 +658,9 @@
         "web"
       ],
       "description": null,
-      "liveUrl": null,
-      "docsUrl": "https://github.com/slabstech/sahana-website"
+      "liveUrl": "https://slabstech.github.io/sahana-website/",
+      "docsUrl": "https://github.com/slabstech/sahana-website",
+      "subdomain": "slabstech-sahana-website"
     },
     {
       "id": "slabstech-sanjeevini_backend",
@@ -616,7 +671,8 @@
       ],
       "description": null,
       "liveUrl": null,
-      "docsUrl": "https://github.com/slabstech/sanjeevini_backend"
+      "docsUrl": "https://github.com/slabstech/sanjeevini_backend",
+      "subdomain": "slabstech-sanjeevini_backend"
     },
     {
       "id": "slabstech-sanjeevini_frontend",
@@ -626,8 +682,9 @@
         "web"
       ],
       "description": null,
-      "liveUrl": null,
-      "docsUrl": "https://github.com/slabstech/sanjeevini_frontend"
+      "liveUrl": "https://slabstech.github.io/sanjeevini_frontend/",
+      "docsUrl": "https://github.com/slabstech/sanjeevini_frontend",
+      "subdomain": "slabstech-sanjeevini_frontend"
     },
     {
       "id": "slabstech-slabstech-github-io",
@@ -637,8 +694,9 @@
         "web"
       ],
       "description": null,
-      "liveUrl": null,
-      "docsUrl": "https://github.com/slabstech/slabstech.github.io"
+      "liveUrl": "https://slabstech.github.io/",
+      "docsUrl": "https://github.com/slabstech/slabstech.github.io",
+      "subdomain": "slabstech-slabstech-github-io"
     }
   ]
 }

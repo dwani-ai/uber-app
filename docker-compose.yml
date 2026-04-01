@@ -1,7 +1,53 @@
+# UberApp + Traefik: hub at http://hub.${DOMAIN}
+# Every catalog id gets http://<id>.${DOMAIN} → placeholder (stub) until excluded via
+# docker-compose.apps.yml or STUB_EXCLUDE. See scripts/generate-traefik-stubs.mjs
+#
+# Copy .env.example → .env and set DOMAIN.
+
 services:
+  traefik:
+    # v3.2's Docker client uses API 1.24; Docker Engine 29+ requires ≥1.44 (fixed in 3.6.1+).
+    image: traefik:v3.6.11
+    container_name: uberapp-traefik
+    restart: unless-stopped
+    command:
+      - --api.dashboard=false
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --providers.docker.network=edge
+      - --providers.file.directory=/etc/traefik/dynamic
+      - --providers.file.watch=true
+      - --entrypoints.web.address=:80
+    ports:
+      - "${TRAEFIK_HTTP_PORT:-80}:80"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik/dynamic:/etc/traefik/dynamic:ro
+    networks:
+      - edge
+    depends_on:
+      - placeholder
+
   hub:
     build: .
     image: uber-app-hub:local
-    ports:
-      - "8080:80"
     restart: unless-stopped
+    networks:
+      - edge
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=edge
+      - traefik.http.routers.hub.rule=Host(`hub.${DOMAIN:-localhost}`)
+      - traefik.http.routers.hub.entrypoints=web
+      - traefik.http.services.hub.loadbalancer.server.port=80
+
+  placeholder:
+    build: ./placeholder
+    image: uber-app-placeholder:local
+    restart: unless-stopped
+    networks:
+      - edge
+
+networks:
+  edge:
+    name: uberapp_edge

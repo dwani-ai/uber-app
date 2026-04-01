@@ -1,0 +1,14 @@
+# Minimal valid dynamic config until projects-stubs.yml exists (npm run stubs / deploy).
+# Traefik v3.6 rejects empty http/routers/services blocks; this host is reserved (.invalid) and unused.
+http:
+  routers:
+    uberapp-dynamic-bootstrap:
+      rule: Host(`__uberapp_bootstrap__.invalid`)
+      service: bootstrap-stub
+      entryPoints:
+        - web
+  services:
+    bootstrap-stub:
+      loadBalancer:
+        servers:
+          - url: "http://placeholder:80"

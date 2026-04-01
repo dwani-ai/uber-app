@@ -1,0 +1,19 @@
+{
+  "name": "uber-app",
+  "private": true,
+  "type": "module",
+  "description": "Portfolio hub + Traefik — single repo automation",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "env:copy": "node scripts/env-copy.mjs",
+    "install:web": "npm ci --prefix web",
+    "manifest": "node scripts/run-manifest.mjs",
+    "stubs": "node scripts/generate-traefik-stubs.mjs",
+    "validate": "node scripts/compose-validate.mjs",
+    "deploy": "node scripts/deploy.mjs",
+    "deploy:build": "node scripts/deploy.mjs --no-up",
+    "ci": "node scripts/ci.mjs"
+  }
+}

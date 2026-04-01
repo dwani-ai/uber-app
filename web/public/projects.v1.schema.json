@@ -26,6 +26,10 @@
       "required": ["id", "title", "repo", "categories", "docsUrl"],
       "properties": {
         "id": { "type": "string", "minLength": 1 },
+        "subdomain": {
+          "type": "string",
+          "description": "Traefik/DNS label; Host(<subdomain>.${DOMAIN})"
+        },
         "title": { "type": "string", "minLength": 1 },
         "repo": {
           "type": "string",

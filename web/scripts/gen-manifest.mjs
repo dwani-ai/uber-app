@@ -85,6 +85,56 @@ const titleOverrides = {
   "dwani-ai/escape_among_us": "Escape Among Us",
 };
 
+/** Per-repo overrides when GitHub Pages URL pattern does not apply. */
+/** @type {Record<string, string>} */
+const liveUrlOverrides = {
+  // Org/user root sites (repo name is <org>.github.io)
+  "slabstech/slabstech.github.io": "https://slabstech.github.io/",
+  "dwani-ai/dwani-ai.github.io": "https://dwani-ai.github.io/",
+  // Known custom domain for this repo
+  "slabstech/gaganyatri.in": "https://gaganyatri.in",
+};
+
+/**
+ * When DOMAIN or UBERAPP_DEPLOY_DOMAIN is set, every project gets
+ * https://<id>.<domain> (matches Docker/Traefik subdomain routing).
+ * Otherwise: GitHub Pages URLs for web-only rows; AI-only stay null.
+ */
+const deployDomain = (
+  process.env.UBERAPP_DEPLOY_DOMAIN || process.env.DOMAIN || ""
+).trim();
+
+/**
+ * @param {string} repo "owner/name"
+ * @returns {string}
+ */
+function liveUrlForWebRepo(repo) {
+  if (liveUrlOverrides[repo]) return liveUrlOverrides[repo];
+  const [owner, name] = repo.split("/");
+  return `https://${owner}.github.io/${name}/`;
+}
+
+/**
+ * @param {string} repo
+ * @param {boolean} isWeb
+ * @returns {string | null}
+ */
+function deployLiveUrl(id) {
+  const scheme = (process.env.UBERAPP_URL_SCHEME || "https").trim();
+  const port = (process.env.UBERAPP_PUBLIC_PORT || "").trim();
+  const p = port ? `:${port}` : "";
+  return `${scheme}://${id}.${deployDomain}${p}/`;
+}
+
+function liveUrlForRepo(repo, isWeb) {
+  if (deployDomain) {
+    const id = idFromRepo(repo);
+    return deployLiveUrl(id);
+  }
+  if (isWeb) return liveUrlForWebRepo(repo);
+  return null;
+}
+
 function titleFromRepo(repo) {
   if (titleOverrides[repo]) return titleOverrides[repo];
   const name = repo.split("/")[1];
@@ -113,14 +163,16 @@ const projects = allRepos.map((repo) => {
   const categories = [];
   if (webSet.has(repo)) categories.push("web");
   if (aiSet.has(repo)) categories.push("ai");
+  const isWeb = webSet.has(repo);
   return {
     id: idFromRepo(repo),
     title: titleFromRepo(repo),
     repo,
     categories,
     description: null,
-    liveUrl: null,
+    liveUrl: liveUrlForRepo(repo, isWeb),
     docsUrl: `https://github.com/${repo}`,
+    subdomain: idFromRepo(repo),
   };
 });
 

@@ -178,3 +178,6 @@ cython_debug/
 # UberApp web hub
 web/node_modules/
 web/dist/
+
+# Generated Traefik routes (DOMAIN-specific); use npm run stubs or deploy
+traefik/dynamic/projects-stubs.yml

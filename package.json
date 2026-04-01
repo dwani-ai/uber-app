@@ -10,6 +10,7 @@
     "env:copy": "node scripts/env-copy.mjs",
     "install:web": "npm ci --prefix web",
     "manifest": "node scripts/run-manifest.mjs",
+    "compose:apps": "node scripts/generate-docker-compose-apps.mjs",
     "stubs": "node scripts/generate-traefik-stubs.mjs",
     "validate": "node scripts/compose-validate.mjs",
     "deploy": "node scripts/deploy.mjs",

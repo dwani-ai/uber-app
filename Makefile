@@ -23,6 +23,10 @@ install:
 manifest:
 	node scripts/run-manifest.mjs
 
+.PHONY: compose-apps
+compose-apps:
+	node scripts/generate-docker-compose-apps.mjs
+
 .PHONY: stubs
 stubs:
 	node scripts/generate-traefik-stubs.mjs

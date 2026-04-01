@@ -3,7 +3,13 @@
  * Writes traefik/dynamic/projects-stubs.yml — one Host router per catalog id → placeholder.
  * Skips ids listed in STUB_EXCLUDE (comma-separated) and services named in docker-compose.apps.yml.
  */
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
+import {
+  readFileSync,
+  writeFileSync,
+  mkdirSync,
+  existsSync,
+  unlinkSync,
+} from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { applyEnv } from "./lib/load-env.mjs";
@@ -11,11 +17,11 @@ import { applyEnv } from "./lib/load-env.mjs";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 applyEnv(root);
 
-const domain = (process.env.DOMAIN || process.env.UBERAPP_DEPLOY_DOMAIN || "").trim();
-if (!domain) {
-  console.error("generate-traefik-stubs: set DOMAIN in .env");
-  process.exit(1);
-}
+const domain = (
+  process.env.DOMAIN ||
+  process.env.UBERAPP_DEPLOY_DOMAIN ||
+  "localhost"
+).trim();
 
 const manifestPath = join(root, "web/public/projects.v1.json");
 if (!existsSync(manifestPath)) {
@@ -78,6 +84,16 @@ for (const p of projects) {
   lines.push("      entryPoints:");
   lines.push("        - web");
   count++;
+}
+
+if (count === 0) {
+  const outDir = join(root, "traefik/dynamic");
+  const outFile = join(outDir, "projects-stubs.yml");
+  if (existsSync(outFile)) unlinkSync(outFile);
+  console.log(
+    "No stub routers; removed projects-stubs.yml if present — all catalog hosts use compose services."
+  );
+  process.exit(0);
 }
 
 lines.push("  services:");

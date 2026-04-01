@@ -85,54 +85,54 @@ const titleOverrides = {
   "dwani-ai/escape_among_us": "Escape Among Us",
 };
 
-/** Per-repo overrides when GitHub Pages URL pattern does not apply. */
-/** @type {Record<string, string>} */
-const liveUrlOverrides = {
-  // Org/user root sites (repo name is <org>.github.io)
-  "slabstech/slabstech.github.io": "https://slabstech.github.io/",
-  "dwani-ai/dwani-ai.github.io": "https://dwani-ai.github.io/",
-  // Known custom domain for this repo
-  "slabstech/gaganyatri.in": "https://gaganyatri.in",
-};
-
 /**
- * When DOMAIN or UBERAPP_DEPLOY_DOMAIN is set, every project gets
- * https://<id>.<domain> (matches Docker/Traefik subdomain routing).
- * Otherwise: GitHub Pages URLs for web-only rows; AI-only stay null.
+ * Hostname used in Traefik (docker compose, stubs). Default localhost matches
+ * docker-compose `hub.${DOMAIN:-localhost}` when .env has no DOMAIN.
  */
-const deployDomain = (
-  process.env.UBERAPP_DEPLOY_DOMAIN || process.env.DOMAIN || ""
-).trim();
+function effectiveDeployDomain() {
+  return (
+    process.env.UBERAPP_DEPLOY_DOMAIN ||
+    process.env.DOMAIN ||
+    "localhost"
+  ).trim();
+}
 
-/**
- * @param {string} repo "owner/name"
- * @returns {string}
- */
-function liveUrlForWebRepo(repo) {
-  if (liveUrlOverrides[repo]) return liveUrlOverrides[repo];
-  const [owner, name] = repo.split("/");
-  return `https://${owner}.github.io/${name}/`;
+/** @param {string} domain */
+function urlSchemeForDomain(domain) {
+  const explicit = (process.env.UBERAPP_URL_SCHEME || "").trim().toLowerCase();
+  if (explicit === "http" || explicit === "https") return explicit;
+  if (
+    domain === "localhost" ||
+    domain === "127.0.0.1" ||
+    domain.endsWith(".localhost")
+  ) {
+    return "http";
+  }
+  return "https";
 }
 
 /**
- * @param {string} repo
- * @param {boolean} isWeb
- * @returns {string | null}
+ * Published app URL inside UberApp only (Traefik → stub or real service).
+ * @param {string} hostLabel catalog id, or "hub" for this portfolio UI
+ * @param {string} domain
  */
-function deployLiveUrl(id) {
-  const scheme = (process.env.UBERAPP_URL_SCHEME || "https").trim();
+function uberappServiceUrl(hostLabel, domain) {
+  const scheme = urlSchemeForDomain(domain);
   const port = (process.env.UBERAPP_PUBLIC_PORT || "").trim();
   const p = port ? `:${port}` : "";
-  return `${scheme}://${id}.${deployDomain}${p}/`;
+  return `${scheme}://${hostLabel}.${domain}${p}/`;
 }
 
-function liveUrlForRepo(repo, isWeb) {
-  if (deployDomain) {
-    const id = idFromRepo(repo);
-    return deployLiveUrl(id);
+/**
+ * Every row gets a liveUrl under UberApp; no GitHub Pages / external hosting.
+ * @param {string} repo
+ */
+function liveUrlForRepo(repo) {
+  const domain = effectiveDeployDomain();
+  if (repo === "dwani-ai/uber-app") {
+    return uberappServiceUrl("hub", domain);
   }
-  if (isWeb) return liveUrlForWebRepo(repo);
-  return null;
+  return uberappServiceUrl(idFromRepo(repo), domain);
 }
 
 function titleFromRepo(repo) {
@@ -148,8 +148,16 @@ function titleFromRepo(repo) {
     .join(" ");
 }
 
+/**
+ * Stable id for Traefik Host(), subdomains, and /run/:id.
+ * Underscores are not valid in DNS host labels (RFC 1035), so map them to hyphens.
+ */
 function idFromRepo(repo) {
-  return repo.replace(/\//g, "-").replace(/\./g, "-").toLowerCase();
+  return repo
+    .replace(/\//g, "-")
+    .replace(/\./g, "-")
+    .replace(/_/g, "-")
+    .toLowerCase();
 }
 
 const webSet = new Set(webRepos);
@@ -163,14 +171,13 @@ const projects = allRepos.map((repo) => {
   const categories = [];
   if (webSet.has(repo)) categories.push("web");
   if (aiSet.has(repo)) categories.push("ai");
-  const isWeb = webSet.has(repo);
   return {
     id: idFromRepo(repo),
     title: titleFromRepo(repo),
     repo,
     categories,
     description: null,
-    liveUrl: liveUrlForRepo(repo, isWeb),
+    liveUrl: liveUrlForRepo(repo),
     docsUrl: `https://github.com/${repo}`,
     subdomain: idFromRepo(repo),
   };

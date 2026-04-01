@@ -29,6 +29,37 @@ cp .env.example .env
 npm run deploy
 ```
 
+**Non-interactive / automation:** if `.env` is missing, you can bootstrap in one step (no manual edit):
+
+```bash
+DOMAIN=portfolio.example.com node scripts/deploy.mjs
+```
+
+**GCP Compute Engine (single bootstrap):**
+
+1. Allow **TCP 80** to the VM (e.g. create a VPC firewall rule, or use the `http-server` network tag with the default rule).
+2. Point DNS: **`hub.<DOMAIN>`** and **`*.<DOMAIN>`** (wildcard) at the VM’s external IP.
+3. Create the instance with metadata and the startup script (run from a machine that has this repo, or adjust paths):
+
+```bash
+gcloud compute instances create uber-app \
+  --zone=us-central1-a \
+  --machine-type=e2-standard-4 \
+  --boot-disk-size=100GB \
+  --tags=http-server \
+  --metadata-from-file=startup-script=scripts/gcp-startup.sh \
+  --metadata=uberapp_domain=portfolio.example.com
+```
+
+Optional metadata key **`uberapp_repo_url`** if the install should clone a fork. The script installs Docker and Node 22, clones into `/opt/uber-app`, and runs **`node scripts/deploy.mjs`** with **`DOMAIN`** set. The first run may take a long time if every catalog app image is built. If users always open the site as **HTTPS** (e.g. Cloudflare), add **`UBERAPP_URL_SCHEME=https`** to `/opt/uber-app/.env`, then run **`npm run manifest && node scripts/deploy.mjs --skip-install`** so iframe `liveUrl`s match.
+
+**Existing VM** (Docker + Node 20+ already installed):
+
+```bash
+git clone https://github.com/dwani-ai/uber-app.git && cd uber-app
+DOMAIN=your.apex.domain node scripts/deploy.mjs
+```
+
 Optional flags for [`scripts/deploy.mjs`](scripts/deploy.mjs): `--skip-install`, `--skip-manifest`, `--no-up`.
 
 If you add **`docker-compose.apps.yml`** (copy from [`docker-compose.apps.example.yml`](docker-compose.apps.example.yml)), it is **merged automatically** by all compose-related commands.

@@ -181,3 +181,6 @@ web/dist/
 
 # Generated Traefik routes (DOMAIN-specific); use npm run stubs or deploy
 traefik/dynamic/projects-stubs.yml
+
+# Generated per catalog (clone+build services); created by deploy / npm run compose:apps
+docker-compose.apps.yml

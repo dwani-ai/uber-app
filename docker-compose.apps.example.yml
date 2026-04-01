@@ -1,4 +1,7 @@
-# Example: add one or more project containers beside the hub.
+# Example overrides: demos or hand-written services.
+# Production: run `npm run deploy` — it generates docker-compose.apps.yml (gitignored)
+# with one real container per catalog row (see runtime/catalog-app + scripts/generate-docker-compose-apps.mjs).
+#
 # Merge when starting:
 #   docker compose -f docker-compose.yml -f docker-compose.apps.yml up -d --build
 #

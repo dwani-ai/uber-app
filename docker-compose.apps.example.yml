@@ -1,0 +1,40 @@
+# Example overrides: demos or hand-written services.
+# Production: run `npm run deploy` — it generates docker-compose.apps.yml (gitignored)
+# with one real container per catalog row (see runtime/catalog-app + scripts/generate-docker-compose-apps.mjs).
+#
+# Merge when starting:
+#   docker compose -f docker-compose.yml -f docker-compose.apps.yml up -d --build
+#
+# Rules:
+# - Service name should match the project `id` in web/public/projects.v1.json (e.g. dwani-ai-discovery).
+# - Host rule must be Host(`<id>.${DOMAIN}`) — same id as subdomain.
+# - Attach every service to network `uberapp_edge` (name: edge in root compose).
+
+services:
+  # Demo: remove in production — proves Traefik routing
+  whoami-demo:
+    image: traefik/whoami:v1.10
+    restart: unless-stopped
+    networks:
+      - edge
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=edge
+      - traefik.http.routers.whoami-demo.rule=Host(`whoami-demo.${DOMAIN}`)
+      - traefik.http.routers.whoami-demo.entrypoints=web
+      - traefik.http.services.whoami-demo.loadbalancer.server.port=80
+
+  # Example real app (replace image / build / port):
+  # dwani-ai-discovery:
+  #   image: ghcr.io/dwani-ai/discovery:latest
+  #   restart: unless-stopped
+  #   networks:
+  #     - edge
+  #   labels:
+  #     - traefik.enable=true
+  #     - traefik.docker.network=edge
+  #     - traefik.http.routers.dwani-ai-discovery.rule=Host(`dwani-ai-discovery.${DOMAIN}`)
+  #     - traefik.http.routers.dwani-ai-discovery.entrypoints=web
+  #     - traefik.http.services.dwani-ai-discovery.loadbalancer.server.port=8080
+
+# Uses the `edge` network from the root docker-compose.yml (do not redefine `networks` here).

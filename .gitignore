@@ -20,6 +20,9 @@ downloads/
 eggs/
 .eggs/
 lib/
+# scripts/lib/ is Node ESM helpers, not Python site-packages
+!scripts/lib/
+!scripts/lib/**
 lib64/
 parts/
 sdist/
@@ -178,3 +181,9 @@ cython_debug/
 # UberApp web hub
 web/node_modules/
 web/dist/
+
+# Generated Traefik routes (DOMAIN-specific); use npm run stubs or deploy
+traefik/dynamic/projects-stubs.yml
+
+# Generated per catalog (clone+build services); created by deploy / npm run compose:apps
+docker-compose.apps.yml

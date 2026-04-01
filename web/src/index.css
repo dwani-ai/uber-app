@@ -178,10 +178,12 @@ header p {
   filter: brightness(1.08);
 }
 
-.btn-live[disabled] {
+.btn-live[disabled],
+.btn-live.btn-live-soon {
   opacity: 0.45;
   cursor: not-allowed;
   filter: none;
+  pointer-events: none;
 }
 
 .btn-doc {
@@ -192,6 +194,22 @@ header p {
 
 .btn-doc:hover {
   border-color: var(--muted);
+}
+
+.btn-doc.btn-soon {
+  opacity: 0.55;
+  cursor: default;
+  pointer-events: none;
+}
+
+.coming-soon-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+}
+
+.embed-coming-soon .muted-note {
+  margin-top: 0;
 }
 
 .error {
@@ -206,4 +224,93 @@ header p {
   margin-top: 2rem;
   font-size: 0.85rem;
   color: var(--muted);
+}
+
+/* In-app project embed (/run/:id) */
+.embed-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.embed-topbar {
+  flex-shrink: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.embed-back {
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--accent-dim);
+}
+
+.embed-back:hover {
+  color: var(--accent);
+}
+
+.embed-title {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.embed-repo {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.embed-sub {
+  color: var(--accent-dim);
+  font-size: 0.75rem;
+}
+
+.embed-topbar-actions {
+  margin-left: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.embed-topbar-actions .btn-doc {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8rem;
+  min-width: unset;
+}
+
+.embed-frame-wrap {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  background: #0a0a0b;
+}
+
+.embed-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #fff;
+}
+
+.embed-placeholder {
+  flex: 1;
+  padding: 2rem;
+  max-width: 42rem;
+}
+
+.embed-placeholder a {
+  font-weight: 600;
+}
+
+.embed-shell {
+  padding: 2rem;
+  max-width: 1120px;
+  margin: 0 auto;
 }

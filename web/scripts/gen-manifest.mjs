@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { isSimpleDeployRepo } from "../../scripts/lib/simple-deploy-repos.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -85,6 +86,60 @@ const titleOverrides = {
   "dwani-ai/escape_among_us": "Escape Among Us",
 };
 
+/**
+ * Hostname used in Traefik (docker compose, stubs). Default localhost matches
+ * docker-compose `hub.${DOMAIN:-localhost}` when .env has no DOMAIN.
+ */
+function effectiveDeployDomain() {
+  return (
+    process.env.UBERAPP_DEPLOY_DOMAIN ||
+    process.env.DOMAIN ||
+    "localhost"
+  ).trim();
+}
+
+/** @param {string} domain */
+function urlSchemeForDomain(domain) {
+  const explicit = (process.env.UBERAPP_URL_SCHEME || "").trim().toLowerCase();
+  if (explicit === "http" || explicit === "https") return explicit;
+  if (
+    domain === "localhost" ||
+    domain === "127.0.0.1" ||
+    domain.endsWith(".localhost")
+  ) {
+    return "http";
+  }
+  return "https";
+}
+
+/**
+ * Published app URL inside UberApp only (Traefik → stub or real service).
+ * @param {string} hostLabel catalog id, or "hub" for this portfolio UI
+ * @param {string} domain
+ */
+function uberappServiceUrl(hostLabel, domain) {
+  const scheme = urlSchemeForDomain(domain);
+  const port = (process.env.UBERAPP_PUBLIC_PORT || "").trim();
+  const p = port ? `:${port}` : "";
+  return `${scheme}://${hostLabel}.${domain}${p}/`;
+}
+
+/**
+ * liveUrl only for {@link isSimpleDeployRepo} — others are "coming soon" (null).
+ * @param {string} repo
+ * @returns {string | null}
+ */
+function liveUrlForRepo(repo) {
+  if (!isSimpleDeployRepo(repo)) {
+    return null;
+  }
+  const domain = effectiveDeployDomain();
+  if (repo === "dwani-ai/uber-app") {
+    return uberappServiceUrl("hub", domain);
+  }
+  return uberappServiceUrl(idFromRepo(repo), domain);
+}
+
 function titleFromRepo(repo) {
   if (titleOverrides[repo]) return titleOverrides[repo];
   const name = repo.split("/")[1];
@@ -98,8 +153,16 @@ function titleFromRepo(repo) {
     .join(" ");
 }
 
+/**
+ * Stable id for Traefik Host(), subdomains, and /run/:id.
+ * Underscores are not valid in DNS host labels (RFC 1035), so map them to hyphens.
+ */
 function idFromRepo(repo) {
-  return repo.replace(/\//g, "-").replace(/\./g, "-").toLowerCase();
+  return repo
+    .replace(/\//g, "-")
+    .replace(/\./g, "-")
+    .replace(/_/g, "-")
+    .toLowerCase();
 }
 
 const webSet = new Set(webRepos);
@@ -119,8 +182,9 @@ const projects = allRepos.map((repo) => {
     repo,
     categories,
     description: null,
-    liveUrl: null,
+    liveUrl: liveUrlForRepo(repo),
     docsUrl: `https://github.com/${repo}`,
+    subdomain: idFromRepo(repo),
   };
 });
 

@@ -1,0 +1,644 @@
+{
+  "$schema": "/projects.v1.schema.json",
+  "version": 1,
+  "projects": [
+    {
+      "id": "dwani-ai-agent-recipes",
+      "title": "Agent Recipes",
+      "repo": "dwani-ai/agent-recipes",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/dwani-ai/agent-recipes"
+    },
+    {
+      "id": "dwani-ai-artha",
+      "title": "Artha",
+      "repo": "dwani-ai/artha",
+      "categories": [
+        "web"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/dwani-ai/artha"
+    },
+    {
+      "id": "dwani-ai-asr-indic-server",
+      "title": "Asr Indic Server",
+      "repo": "dwani-ai/asr-indic-server",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/dwani-ai/asr-indic-server"
+    },
+    {
+      "id": "dwani-ai-discovery",
+      "title": "Discovery",
+      "repo": "dwani-ai/discovery",
+      "categories": [
+        "web"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/dwani-ai/discovery"
+    },
+    {
+      "id": "dwani-ai-docs",
+      "title": "Docs",
+      "repo": "dwani-ai/docs",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/dwani-ai/docs"
+    },
+    {
+      "id": "dwani-ai-docs-indic-server",
+      "title": "Docs Indic Server",
+      "repo": "dwani-ai/docs-indic-server",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/dwani-ai/docs-indic-server"
+    },
+    {
+      "id": "dwani-ai-drishti",
+      "title": "Drishti",
+      "repo": "dwani-ai/drishti",
+      "categories": [
+        "web"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/dwani-ai/drishti"
+    },
+    {
+      "id": "dwani-ai-dwani-ai-github-io",
+      "title": "dwani-ai (GitHub Pages)",
+      "repo": "dwani-ai/dwani-ai.github.io",
+      "categories": [
+        "web"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/dwani-ai/dwani-ai.github.io"
+    },
+    {
+      "id": "dwani-ai-dwani-api-server",
+      "title": "Dwani Api Server",
+      "repo": "dwani-ai/dwani-api-server",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/dwani-ai/dwani-api-server"
+    },
+    {
+      "id": "dwani-ai-dwani-server",
+      "title": "Dwani Server",
+      "repo": "dwani-ai/dwani-server",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/dwani-ai/dwani-server"
+    },
+    {
+      "id": "dwani-ai-escape_among_us",
+      "title": "Escape Among Us",
+      "repo": "dwani-ai/escape_among_us",
+      "categories": [
+        "web"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/dwani-ai/escape_among_us"
+    },
+    {
+      "id": "dwani-ai-indic-translate-server",
+      "title": "Indic Translate Server",
+      "repo": "dwani-ai/indic-translate-server",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/dwani-ai/indic-translate-server"
+    },
+    {
+      "id": "dwani-ai-llm-indic-server",
+      "title": "Llm Indic Server",
+      "repo": "dwani-ai/llm-indic-server",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/dwani-ai/llm-indic-server"
+    },
+    {
+      "id": "dwani-ai-llm-recipes",
+      "title": "Llm Recipes",
+      "repo": "dwani-ai/llm-recipes",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/dwani-ai/llm-recipes"
+    },
+    {
+      "id": "dwani-ai-sanjeevini",
+      "title": "Sanjeevini",
+      "repo": "dwani-ai/sanjeevini",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/dwani-ai/sanjeevini"
+    },
+    {
+      "id": "dwani-ai-swara",
+      "title": "Swara",
+      "repo": "dwani-ai/swara",
+      "categories": [
+        "web"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/dwani-ai/swara"
+    },
+    {
+      "id": "dwani-ai-talk",
+      "title": "Talk",
+      "repo": "dwani-ai/talk",
+      "categories": [
+        "web"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/dwani-ai/talk"
+    },
+    {
+      "id": "dwani-ai-tts-indic-server",
+      "title": "Tts Indic Server",
+      "repo": "dwani-ai/tts-indic-server",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/dwani-ai/tts-indic-server"
+    },
+    {
+      "id": "dwani-ai-uber-app",
+      "title": "UberApp (this hub)",
+      "repo": "dwani-ai/uber-app",
+      "categories": [
+        "web"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/dwani-ai/uber-app"
+    },
+    {
+      "id": "dwani-ai-vision_benchmarks",
+      "title": "Vision Benchmarks",
+      "repo": "dwani-ai/vision_benchmarks",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/dwani-ai/vision_benchmarks"
+    },
+    {
+      "id": "dwani-ai-workshop",
+      "title": "Workshop",
+      "repo": "dwani-ai/workshop",
+      "categories": [
+        "web"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/dwani-ai/workshop"
+    },
+    {
+      "id": "sachinsshetty-agent-beats-dwani-discovery",
+      "title": "Agent Beats Dwani Discovery",
+      "repo": "sachinsshetty/agent-beats-dwani-discovery",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/sachinsshetty/agent-beats-dwani-discovery"
+    },
+    {
+      "id": "sachinsshetty-agent-olympics-school",
+      "title": "Agent Olympics School",
+      "repo": "sachinsshetty/agent-olympics-school",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/sachinsshetty/agent-olympics-school"
+    },
+    {
+      "id": "sachinsshetty-biryani_bot",
+      "title": "Biryani Bot",
+      "repo": "sachinsshetty/biryani_bot",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/sachinsshetty/biryani_bot"
+    },
+    {
+      "id": "sachinsshetty-care_scribe",
+      "title": "Care scribe",
+      "repo": "sachinsshetty/care_scribe",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/sachinsshetty/care_scribe"
+    },
+    {
+      "id": "sachinsshetty-care_scribe_fe",
+      "title": "Care scribe (frontend)",
+      "repo": "sachinsshetty/care_scribe_fe",
+      "categories": [
+        "web"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/sachinsshetty/care_scribe_fe"
+    },
+    {
+      "id": "sachinsshetty-elixir_edge",
+      "title": "Elixir Edge",
+      "repo": "sachinsshetty/elixir_edge",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/sachinsshetty/elixir_edge"
+    },
+    {
+      "id": "sachinsshetty-faster-whisper-server",
+      "title": "Faster Whisper Server",
+      "repo": "sachinsshetty/faster-whisper-server",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/sachinsshetty/faster-whisper-server"
+    },
+    {
+      "id": "sachinsshetty-indictrans2",
+      "title": "IndicTrans2",
+      "repo": "sachinsshetty/IndicTrans2",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/sachinsshetty/IndicTrans2"
+    },
+    {
+      "id": "sachinsshetty-inference_hackathon",
+      "title": "Inference Hackathon",
+      "repo": "sachinsshetty/inference_hackathon",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/sachinsshetty/inference_hackathon"
+    },
+    {
+      "id": "sachinsshetty-ksim",
+      "title": "Ksim",
+      "repo": "sachinsshetty/ksim",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/sachinsshetty/ksim"
+    },
+    {
+      "id": "sachinsshetty-medagentbench",
+      "title": "MedAgentBench",
+      "repo": "sachinsshetty/MedAgentBench",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/sachinsshetty/MedAgentBench"
+    },
+    {
+      "id": "sachinsshetty-notebooklm",
+      "title": "Notebooklm",
+      "repo": "sachinsshetty/notebooklm",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/sachinsshetty/notebooklm"
+    },
+    {
+      "id": "sachinsshetty-onwards",
+      "title": "Onwards",
+      "repo": "sachinsshetty/onwards",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/sachinsshetty/onwards"
+    },
+    {
+      "id": "sachinsshetty-openclaw",
+      "title": "Openclaw",
+      "repo": "sachinsshetty/openclaw",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/sachinsshetty/openclaw"
+    },
+    {
+      "id": "sachinsshetty-passpredict",
+      "title": "Passpredict",
+      "repo": "sachinsshetty/passpredict",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/sachinsshetty/passpredict"
+    },
+    {
+      "id": "sachinsshetty-prime-rl",
+      "title": "Prime Rl",
+      "repo": "sachinsshetty/prime-rl",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/sachinsshetty/prime-rl"
+    },
+    {
+      "id": "sachinsshetty-sanjeevini",
+      "title": "Sanjeevini",
+      "repo": "sachinsshetty/sanjeevini",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/sachinsshetty/sanjeevini"
+    },
+    {
+      "id": "sachinsshetty-segment-anything-2",
+      "title": "Segment Anything 2",
+      "repo": "sachinsshetty/segment-anything-2",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/sachinsshetty/segment-anything-2"
+    },
+    {
+      "id": "sachinsshetty-smart_city_hackathon",
+      "title": "Smart City Hackathon",
+      "repo": "sachinsshetty/smart_city_hackathon",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/sachinsshetty/smart_city_hackathon"
+    },
+    {
+      "id": "sachinsshetty-thunder-flash",
+      "title": "Thunder Flash",
+      "repo": "sachinsshetty/thunder-flash",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/sachinsshetty/thunder-flash"
+    },
+    {
+      "id": "sachinsshetty-track-me-not",
+      "title": "Track Me Not",
+      "repo": "sachinsshetty/track-me-not",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/sachinsshetty/track-me-not"
+    },
+    {
+      "id": "sachinsshetty-ubertax_discovery",
+      "title": "UberTax discovery",
+      "repo": "sachinsshetty/uberTax_discovery",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/sachinsshetty/uberTax_discovery"
+    },
+    {
+      "id": "sachinsshetty-xr_dwani",
+      "title": "Xr Dwani",
+      "repo": "sachinsshetty/xr_dwani",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/sachinsshetty/xr_dwani"
+    },
+    {
+      "id": "sachinsshetty-xr-hack-gardenia",
+      "title": "XR hack — Gardenia",
+      "repo": "sachinsshetty/xr-hack-gardenia",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/sachinsshetty/xr-hack-gardenia"
+    },
+    {
+      "id": "slabstech-audiocraft-tts-server",
+      "title": "Audiocraft Tts Server",
+      "repo": "slabstech/audiocraft-tts-server",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/slabstech/audiocraft-tts-server"
+    },
+    {
+      "id": "slabstech-bhoomi",
+      "title": "Bhoomi",
+      "repo": "slabstech/bhoomi",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/slabstech/bhoomi"
+    },
+    {
+      "id": "slabstech-book-nation-building-sir-m-vishveshwaraya",
+      "title": "Nation-building — Sir M. Visvesvaraya",
+      "repo": "slabstech/book-nation-building-sir-m-vishveshwaraya",
+      "categories": [
+        "web"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/slabstech/book-nation-building-sir-m-vishveshwaraya"
+    },
+    {
+      "id": "slabstech-dhwani-hf-deploy",
+      "title": "Dhwani Hf Deploy",
+      "repo": "slabstech/dhwani-hf-deploy",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/slabstech/dhwani-hf-deploy"
+    },
+    {
+      "id": "slabstech-flex-fit-app",
+      "title": "Flex Fit App",
+      "repo": "slabstech/flex-fit-app",
+      "categories": [
+        "web"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/slabstech/flex-fit-app"
+    },
+    {
+      "id": "slabstech-gaganyatri-in",
+      "title": "Gaganyatri",
+      "repo": "slabstech/gaganyatri.in",
+      "categories": [
+        "web"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/slabstech/gaganyatri.in"
+    },
+    {
+      "id": "slabstech-indicf5",
+      "title": "IndicF5",
+      "repo": "slabstech/IndicF5",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/slabstech/IndicF5"
+    },
+    {
+      "id": "slabstech-olmocr",
+      "title": "Olmocr",
+      "repo": "slabstech/olmocr",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/slabstech/olmocr"
+    },
+    {
+      "id": "slabstech-parler-tts-server",
+      "title": "Parler Tts Server",
+      "repo": "slabstech/parler-tts-server",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/slabstech/parler-tts-server"
+    },
+    {
+      "id": "slabstech-sahana-website",
+      "title": "Sahana Website",
+      "repo": "slabstech/sahana-website",
+      "categories": [
+        "web"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/slabstech/sahana-website"
+    },
+    {
+      "id": "slabstech-sanjeevini_backend",
+      "title": "Sanjeevini Backend",
+      "repo": "slabstech/sanjeevini_backend",
+      "categories": [
+        "ai"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/slabstech/sanjeevini_backend"
+    },
+    {
+      "id": "slabstech-sanjeevini_frontend",
+      "title": "Sanjeevini Frontend",
+      "repo": "slabstech/sanjeevini_frontend",
+      "categories": [
+        "web"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/slabstech/sanjeevini_frontend"
+    },
+    {
+      "id": "slabstech-slabstech-github-io",
+      "title": "Slabstech Github Io",
+      "repo": "slabstech/slabstech.github.io",
+      "categories": [
+        "web"
+      ],
+      "description": null,
+      "liveUrl": null,
+      "docsUrl": "https://github.com/slabstech/slabstech.github.io"
+    }
+  ]
+}

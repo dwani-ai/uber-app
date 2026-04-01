@@ -1,0 +1,7 @@
+services:
+  hub:
+    build: .
+    image: uber-app-hub:local
+    ports:
+      - "8080:80"
+    restart: unless-stopped

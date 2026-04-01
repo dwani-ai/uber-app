@@ -226,3 +226,11 @@ The manifest may include `"$schema": "/projects.v1.schema.json"`. See **`web/pub
 | `.env.example` | `DOMAIN` and optional port |
 | `Dockerfile` | Hub image (nginx static) |
 | `nginx.conf` | SPA fallback inside `hub` |
+
+
+<!--
+ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+ nvm install 24
+
+
+-->

@@ -20,6 +20,9 @@ downloads/
 eggs/
 .eggs/
 lib/
+# scripts/lib/ is Node ESM helpers, not Python site-packages
+!scripts/lib/
+!scripts/lib/**
 lib64/
 parts/
 sdist/

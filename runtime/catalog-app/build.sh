@@ -122,7 +122,7 @@ done
 # Last resort: shallow find package.json with "build" (maxdepth 4)
 if [ -z "$try_dirs" ]; then
   found=""
-  for f in $(find . -maxdepth 4 -name package.json 2>/dev/null | grep -v /node_modules/ | sort); do
+  for f in $(find . -maxdepth 6 -name package.json 2>/dev/null | grep -v /node_modules/ | sort); do
     d=$(dirname "$f")
     d=${d#./}
     [ "$d" = "." ] && continue

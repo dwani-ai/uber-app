@@ -21,7 +21,7 @@
       "categories": [
         "web"
       ],
-      "description": null,
+      "description": "No app sources in the repo yet; cannot run a static or Node preview.",
       "liveUrl": null,
       "docsUrl": "https://github.com/dwani-ai/artha",
       "subdomain": "dwani-ai-artha"
@@ -81,7 +81,7 @@
       "categories": [
         "web"
       ],
-      "description": null,
+      "description": "Python/services only; no static front-end build for nginx.",
       "liveUrl": null,
       "docsUrl": "https://github.com/dwani-ai/drishti",
       "subdomain": "dwani-ai-drishti"
@@ -189,7 +189,7 @@
       "categories": [
         "web"
       ],
-      "description": null,
+      "description": "No app sources in the repo yet; cannot run a static or Node preview.",
       "liveUrl": null,
       "docsUrl": "https://github.com/dwani-ai/swara",
       "subdomain": "dwani-ai-swara"
@@ -250,7 +250,7 @@
         "web"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://dwani-ai-workshop.localhost/",
       "docsUrl": "https://github.com/dwani-ai/workshop",
       "subdomain": "dwani-ai-workshop"
     },
@@ -309,7 +309,7 @@
       "categories": [
         "web"
       ],
-      "description": null,
+      "description": "Component stub only (no `build` script / app tree in this fork).",
       "liveUrl": null,
       "docsUrl": "https://github.com/sachinsshetty/care_scribe_fe",
       "subdomain": "sachinsshetty-care-scribe-fe"
@@ -597,7 +597,7 @@
       "categories": [
         "web"
       ],
-      "description": null,
+      "description": "Android (Compose) project; not a static web export.",
       "liveUrl": null,
       "docsUrl": "https://github.com/slabstech/flex-fit-app",
       "subdomain": "slabstech-flex-fit-app"

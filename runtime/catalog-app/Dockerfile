@@ -13,6 +13,9 @@ FROM node:22-alpine AS build
 RUN apk add --no-cache python3 py3-pip ruby ruby-bundler ruby-dev make g++ git
 # Upstream repos often have imperfect peer ranges (e.g. React 18 vs a lib asking for React 19).
 ENV NPM_CONFIG_LEGACY_PEER_DEPS=true
+# 1 = fail if install/build produces no static output (use with verify:catalog-apps). Default: lenient for prod.
+ARG CATALOG_APP_STRICT_BUILD=0
+ENV CATALOG_APP_STRICT_BUILD=$CATALOG_APP_STRICT_BUILD
 WORKDIR /src
 COPY --from=clone /work/repo ./
 COPY build.sh /src/build.sh

@@ -62,6 +62,10 @@ if [ -f "$ROOT/mkdocs.yml" ]; then
   if artifact_copy "."; then
     exit 0
   fi
+  if [ "${CATALOG_APP_STRICT_BUILD:-0}" = "1" ]; then
+    echo "catalog-app: strict build failed (MkDocs produced no site/)" >&2
+    exit 1
+  fi
   printf '%s\n' '<!DOCTYPE html><html><head><meta charset="utf-8"><title>MkDocs</title></head><body><h1>MkDocs build produced no <code>site/</code> output</h1></body></html>' > /artifact/index.html
   exit 0
 fi
@@ -98,6 +102,10 @@ EOF
   cd "$ROOT"
   if artifact_copy "."; then
     exit 0
+  fi
+  if [ "${CATALOG_APP_STRICT_BUILD:-0}" = "1" ]; then
+    echo "catalog-app: strict build failed (Jekyll produced no _site/)" >&2
+    exit 1
   fi
   printf '%s\n' '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Jekyll</title></head><body><h1>Jekyll build produced no <code>_site/</code> output</h1></body></html>' > /artifact/index.html
   exit 0
@@ -150,6 +158,10 @@ fi
 mkdir -p /artifact
 
 if [ -z "$try_dirs" ]; then
+  if [ "${CATALOG_APP_STRICT_BUILD:-0}" = "1" ]; then
+    echo "catalog-app: strict build failed (no package.json with build script)" >&2
+    exit 1
+  fi
   printf '%s\n' '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Catalog app</title><style>body{font-family:system-ui;margin:2rem}</style></head><body><h1>No Node build target</h1><p>No <code>package.json</code> with a <code>build</code> script found (checked root, <code>web/</code>, <code>frontend/</code>, etc.).</p></body></html>' > /artifact/index.html
   exit 0
 fi
@@ -172,7 +184,11 @@ else
   npm install --no-audit --no-fund
 fi
 
-npm run build 2>/dev/null || npm run build:prod 2>/dev/null || true
+if [ "${CATALOG_APP_STRICT_BUILD:-0}" = "1" ]; then
+  npm run build || npm run build:prod
+else
+  npm run build 2>/dev/null || npm run build:prod 2>/dev/null || true
+fi
 
 cd "$ROOT"
 if artifact_copy "$try_dirs"; then
@@ -183,6 +199,11 @@ fi
 cd "$ROOT/$try_dirs"
 if artifact_copy "."; then
   exit 0
+fi
+
+if [ "${CATALOG_APP_STRICT_BUILD:-0}" = "1" ]; then
+  echo "catalog-app: strict build failed (no dist/build/out/site/_site under $try_dirs)" >&2
+  exit 1
 fi
 
 printf '%s\n' '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Build</title><style>body{font-family:system-ui;margin:2rem}</style></head><body><h1>No static output</h1><p>Build ran in <code>'"$try_dirs"'</code> but no <code>dist</code>/<code>build</code>/<code>out</code>/<code>site</code>/<code>_site</code> was found.</p></body></html>' > /artifact/index.html

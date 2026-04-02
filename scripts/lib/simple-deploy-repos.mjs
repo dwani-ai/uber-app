@@ -11,7 +11,7 @@ export const SIMPLE_DEPLOY_REPOS = new Set([
   // agent-olympics-school: frontend/ is Python (Streamlit), not Node — not catalog-app
   "sachinsshetty/thunder-flash",
   "sachinsshetty/uberTax_discovery",
-  "sachinsshetty/xr-hack-gardenia",
+  // xr-hack-gardenia: frontend `tsc -b` fails upstream (Hero.tsx / MUI); re-add when fixed.
   "slabstech/gaganyatri.in",
   "slabstech/sahana-website",
   // MkDocs → runtime/catalog-app (build.sh: mkdocs build → site/)

@@ -86,6 +86,8 @@ const stubWebDeployHints = {
     "Component stub only (no `build` script / app tree in this fork).",
   "slabstech/flex-fit-app":
     "Android (Compose) project; not a static web export.",
+  "sachinsshetty/xr-hack-gardenia":
+    "Static build blocked: TypeScript errors in frontend/ (fix upstream, then re-add to simple-deploy).",
 };
 
 /** @type {Record<string, string>} */

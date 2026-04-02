@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-# Build-arg REPO is "owner/name" (GitHub). Clone + discover Node app dir + build → nginx.
+# Build-arg REPO is "owner/name" (GitHub). Clone + MkDocs or Node build → nginx static.
 ARG REPO
 
 FROM alpine:3.20 AS clone
@@ -9,7 +9,8 @@ ARG REPO
 RUN git clone --depth 1 "https://github.com/${REPO}.git" repo
 
 FROM node:22-alpine AS build
-RUN apk add --no-cache python3 make g++
+# python3 + pip: MkDocs (and similar) static sites; make/g++: native Node deps
+RUN apk add --no-cache python3 py3-pip make g++
 # Upstream repos often have imperfect peer ranges (e.g. React 18 vs a lib asking for React 19).
 ENV NPM_CONFIG_LEGACY_PEER_DEPS=true
 WORKDIR /src

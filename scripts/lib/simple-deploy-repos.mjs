@@ -1,7 +1,6 @@
 /**
- * Catalog `repo` strings (owner/name) that use runtime/catalog-app today: clone +
- * root npm install + npm run build → nginx static. Expand as you add Dockerfiles
- * or custom stacks for other projects.
+ * Catalog `repo` strings (owner/name) that use runtime/catalog-app: clone,
+ * then build.sh (MkDocs → site/, or Node `npm run build` → dist/build/…) → nginx.
  */
 export const SIMPLE_DEPLOY_REPOS = new Set([
   "dwani-ai/discovery",
@@ -14,6 +13,10 @@ export const SIMPLE_DEPLOY_REPOS = new Set([
   "sachinsshetty/xr-hack-gardenia",
   "slabstech/gaganyatri.in",
   "slabstech/sahana-website",
+  // MkDocs → runtime/catalog-app (build.sh: mkdocs build → site/)
+  "slabstech/book-nation-building-sir-m-vishveshwaraya",
+  // Vite SPA (outDir: build)
+  "slabstech/sanjeevini_frontend",
 ]);
 
 /** @param {string} repo */

@@ -22,7 +22,7 @@ Everything is wired in **one project**: Node scripts under [`scripts/`](scripts/
 
 Equivalent: `make deploy`, `make manifest`, `make ci`, etc.
 
-**Simple deploy vs runtime vs coming soon:** Manifest `liveUrl` and generated [`docker-compose.apps.yml`](docker-compose.apps.yml) cover **static** repos from [`scripts/lib/simple-deploy-repos.mjs`](scripts/lib/simple-deploy-repos.mjs) (image [`runtime/catalog-app`](runtime/catalog-app), [`build.sh`](runtime/catalog-app/build.sh): first `package.json` with `build`, then nginx) and **Node** repos from [`scripts/lib/runtime-node-repos.mjs`](scripts/lib/runtime-node-repos.mjs) (e.g. **Escape Among Us** → [`runtime/escape-among-us`](runtime/escape-among-us), Next.js + Socket.io on port 3000). Everything else stays **`liveUrl: null`** (Coming soon) until you add a service.
+**Simple deploy vs runtime vs coming soon:** Manifest `liveUrl` and generated [`docker-compose.apps.yml`](docker-compose.apps.yml) cover **static** repos from [`scripts/lib/simple-deploy-repos.mjs`](scripts/lib/simple-deploy-repos.mjs) (image [`runtime/catalog-app`](runtime/catalog-app): [`build.sh`](runtime/catalog-app/build.sh) runs **MkDocs** when `mkdocs.yml` is present, otherwise finds a `package.json` with `build` — including `talk-ui/` — then nginx) and **Node** repos from [`scripts/lib/runtime-node-repos.mjs`](scripts/lib/runtime-node-repos.mjs) (e.g. **Escape Among Us** → [`runtime/escape-among-us`](runtime/escape-among-us), Next.js + Socket.io on port 3000). Remaining catalog rows stay **`liveUrl: null`** (Coming soon) until you add a service (e.g. Jekyll `remote_theme` without a local `Gemfile`, Android-only apps, or upstream repos with no build / broken imports).
 
 **First-time server deploy:**
 

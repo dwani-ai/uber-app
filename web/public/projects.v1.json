@@ -574,7 +574,7 @@
         "web"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://slabstech-book-nation-building-sir-m-vishveshwaraya.localhost/",
       "docsUrl": "https://github.com/slabstech/book-nation-building-sir-m-vishveshwaraya",
       "subdomain": "slabstech-book-nation-building-sir-m-vishveshwaraya"
     },
@@ -682,7 +682,7 @@
         "web"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://slabstech-sanjeevini-frontend.localhost/",
       "docsUrl": "https://github.com/slabstech/sanjeevini_frontend",
       "subdomain": "slabstech-sanjeevini-frontend"
     },

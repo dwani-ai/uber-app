@@ -1,5 +1,5 @@
 #!/bin/sh
-# Clone is at /src. Find package.json with a "build" script, install deps, build, copy static output → /artifact
+# Clone is at /src. MkDocs (mkdocs.yml) → site/; else find package.json "build", install, copy dist/build/out/site/_site → /artifact
 set -eu
 
 ROOT=/src
@@ -29,6 +29,10 @@ artifact_copy() {
     cp -r "$base/out"/. /artifact/
     return 0
   fi
+  if [ -d "$base/site" ] && [ -n "$(ls -A "$base/site" 2>/dev/null)" ]; then
+    cp -r "$base/site"/. /artifact/
+    return 0
+  fi
   if [ -d "$base/_site" ] && [ -n "$(ls -A "$base/_site" 2>/dev/null)" ]; then
     cp -r "$base/_site"/. /artifact/
     return 0
@@ -40,6 +44,28 @@ artifact_copy() {
   return 1
 }
 
+# MkDocs-only repos have no package.json; handle before Node discovery.
+if [ -f "$ROOT/mkdocs.yml" ]; then
+  mkdir -p /artifact
+  cd "$ROOT"
+  if [ -f requirements.txt ]; then
+    python3 -m pip install --no-cache-dir --break-system-packages -r requirements.txt 2>/dev/null \
+      || python3 -m pip install --no-cache-dir -r requirements.txt 2>/dev/null \
+      || pip3 install --no-cache-dir -r requirements.txt
+  else
+    python3 -m pip install --no-cache-dir --break-system-packages mkdocs-material 2>/dev/null \
+      || python3 -m pip install --no-cache-dir mkdocs-material 2>/dev/null \
+      || pip3 install --no-cache-dir mkdocs-material
+  fi
+  mkdocs build
+  cd "$ROOT"
+  if artifact_copy "."; then
+    exit 0
+  fi
+  printf '%s\n' '<!DOCTYPE html><html><head><meta charset="utf-8"><title>MkDocs</title></head><body><h1>MkDocs build produced no <code>site/</code> output</h1></body></html>' > /artifact/index.html
+  exit 0
+fi
+
 has_build_script() {
   f="$1/package.json"
   [ -f "$f" ] && grep -q '"build"' "$f"
@@ -49,7 +75,7 @@ has_build_script() {
 try_dirs=""
 if has_build_script "."; then try_dirs="."
 fi
-for d in web frontend client app ui dashboard/tax_ui packages/web packages/frontend; do
+for d in web frontend client app ui talk-ui dashboard/tax_ui packages/web packages/frontend; do
   if [ -z "$try_dirs" ] && [ -d "$d" ] && has_build_script "$d"; then
     try_dirs="$d"
     break
@@ -109,4 +135,4 @@ if artifact_copy "."; then
   exit 0
 fi
 
-printf '%s\n' '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Build</title><style>body{font-family:system-ui;margin:2rem}</style></head><body><h1>No static output</h1><p>Build ran in <code>'"$try_dirs"'</code> but no <code>dist</code>/<code>build</code>/<code>out</code>/<code>_site</code> was found.</p></body></html>' > /artifact/index.html
+printf '%s\n' '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Build</title><style>body{font-family:system-ui;margin:2rem}</style></head><body><h1>No static output</h1><p>Build ran in <code>'"$try_dirs"'</code> but no <code>dist</code>/<code>build</code>/<code>out</code>/<code>site</code>/<code>_site</code> was found.</p></body></html>' > /artifact/index.html

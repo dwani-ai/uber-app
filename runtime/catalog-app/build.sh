@@ -103,6 +103,19 @@ EOF
   exit 0
 fi
 
+# dwani-ai/talk: SPA in talk-ui/; upstream omits src/lib/* (AuthContext, App imports).
+if [ -d "$ROOT/talk-ui/src" ]; then
+  mkdir -p "$ROOT/talk-ui/src/lib"
+  if [ -f "$ROOT/talk-ui/src/contexts/AuthContext.jsx" ] && [ ! -f "$ROOT/talk-ui/src/lib/authClient.js" ] && [ -f /opt/talk-authClient.js ]; then
+    cp /opt/talk-authClient.js "$ROOT/talk-ui/src/lib/authClient.js"
+  fi
+  if [ -f "$ROOT/talk-ui/src/App.jsx" ]; then
+    [ ! -f "$ROOT/talk-ui/src/lib/apiClient.js" ] && [ -f /opt/talk-apiClient.js ] && cp /opt/talk-apiClient.js "$ROOT/talk-ui/src/lib/apiClient.js"
+    [ ! -f "$ROOT/talk-ui/src/lib/audio.js" ] && [ -f /opt/talk-audio.js ] && cp /opt/talk-audio.js "$ROOT/talk-ui/src/lib/audio.js"
+    [ ! -f "$ROOT/talk-ui/src/lib/session.js" ] && [ -f /opt/talk-session.js ] && cp /opt/talk-session.js "$ROOT/talk-ui/src/lib/session.js"
+  fi
+fi
+
 has_build_script() {
   f="$1/package.json"
   [ -f "$f" ] && grep -q '"build"' "$f"
@@ -143,47 +156,6 @@ fi
 
 echo "catalog-app: using app directory: $try_dirs"
 cd "$ROOT/$try_dirs"
-
-# dwani-ai/talk currently misses this frontend helper in repo; provide safe fallback.
-if [ -f "$ROOT/talk-ui/src/contexts/AuthContext.jsx" ] && [ ! -f "$ROOT/talk-ui/src/lib/authClient.js" ]; then
-  mkdir -p "$ROOT/talk-ui/src/lib"
-  cat > "$ROOT/talk-ui/src/lib/authClient.js" <<'EOF'
-const BASE = '/v1/auth'
-
-async function jsonRequest(path, init = {}) {
-  const res = await fetch(`${BASE}${path}`, {
-    credentials: 'include',
-    headers: { 'Content-Type': 'application/json', ...(init.headers || {}) },
-    ...init,
-  })
-  if (!res.ok) {
-    let message = `${res.status} ${res.statusText}`
-    try {
-      const body = await res.json()
-      if (body && body.detail) message = body.detail
-    } catch (_) {}
-    throw new Error(message)
-  }
-  return res.status === 204 ? null : res.json()
-}
-
-export function getCurrentUser() {
-  return jsonRequest('/me', { method: 'GET' })
-}
-
-export function signup(payload) {
-  return jsonRequest('/signup', { method: 'POST', body: JSON.stringify(payload) })
-}
-
-export function login(payload) {
-  return jsonRequest('/login', { method: 'POST', body: JSON.stringify(payload) })
-}
-
-export function logout() {
-  return jsonRequest('/logout', { method: 'POST' })
-}
-EOF
-fi
 
 # Relaxed peers for automated builds (Dockerfile also sets this).
 export NPM_CONFIG_LEGACY_PEER_DEPS="${NPM_CONFIG_LEGACY_PEER_DEPS:-true}"

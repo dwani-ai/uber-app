@@ -16,6 +16,10 @@ ENV NPM_CONFIG_LEGACY_PEER_DEPS=true
 WORKDIR /src
 COPY --from=clone /work/repo ./
 COPY build.sh /src/build.sh
+COPY talk-authClient.js /opt/talk-authClient.js
+COPY talk-apiClient.js /opt/talk-apiClient.js
+COPY talk-audio.js /opt/talk-audio.js
+COPY talk-session.js /opt/talk-session.js
 RUN chmod +x /src/build.sh && /src/build.sh
 
 FROM nginx:1.27-alpine

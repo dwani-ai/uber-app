@@ -130,7 +130,7 @@
         "web"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://dwani-ai-escape-among-us.localhost/",
       "docsUrl": "https://github.com/dwani-ai/escape_among_us",
       "subdomain": "dwani-ai-escape-among-us"
     },

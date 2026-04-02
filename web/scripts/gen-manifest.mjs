@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { isSimpleDeployRepo } from "../../scripts/lib/simple-deploy-repos.mjs";
+import { isRuntimeNodeRepo } from "../../scripts/lib/runtime-node-repos.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -125,12 +126,12 @@ function uberappServiceUrl(hostLabel, domain) {
 }
 
 /**
- * liveUrl only for {@link isSimpleDeployRepo} — others are "coming soon" (null).
+ * liveUrl for static simple-deploy and Node runtime apps (see runtime-node-repos).
  * @param {string} repo
  * @returns {string | null}
  */
 function liveUrlForRepo(repo) {
-  if (!isSimpleDeployRepo(repo)) {
+  if (!isSimpleDeployRepo(repo) && !isRuntimeNodeRepo(repo)) {
     return null;
   }
   const domain = effectiveDeployDomain();

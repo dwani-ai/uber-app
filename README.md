@@ -14,15 +14,15 @@ Everything is wired in **one project**: Node scripts under [`scripts/`](scripts/
 | `npm run install:web` | `npm ci` in `web/` |
 | `npm run manifest` | Regenerate `web/public/projects.v1.json` (reads **`DOMAIN`** from `.env`) |
 | `npm run validate` | `docker compose config` (includes `docker-compose.apps.yml` if present) |
-| `npm run compose:apps` | Regenerate [`docker-compose.apps.yml`](docker-compose.apps.yml) (only [`simple-deploy-repos.mjs`](scripts/lib/simple-deploy-repos.mjs)) |
+| `npm run compose:apps` | Regenerate [`docker-compose.apps.yml`](docker-compose.apps.yml) ([`simple-deploy-repos.mjs`](scripts/lib/simple-deploy-repos.mjs) + [`runtime-node-repos.mjs`](scripts/lib/runtime-node-repos.mjs)) |
 | `npm run stubs` | Regenerate [`traefik/dynamic/projects-stubs.yml`](traefik/dynamic/projects-stubs.yml) (needs `DOMAIN`; see below) |
-| `npm run deploy` | **Full pipeline:** `install:web` → manifest → **`compose:apps`** (simple-deploy list only) → stubs → compose validate → **build** → **`docker compose up -d`** |
+| `npm run deploy` | **Full pipeline:** `install:web` → manifest → **`compose:apps`** → stubs → compose validate → **build** → **`docker compose up -d`** |
 | `npm run deploy:build` | Same as deploy but **no** `up` (images only) |
 | `npm run ci` | Same checks as GitHub Actions (needs Docker on the machine) |
 
 Equivalent: `make deploy`, `make manifest`, `make ci`, etc.
 
-**Simple deploy vs coming soon:** UberApp `liveUrl` and generated [`docker-compose.apps.yml`](docker-compose.apps.yml) only include repos listed in [`scripts/lib/simple-deploy-repos.mjs`](scripts/lib/simple-deploy-repos.mjs). The image [`runtime/catalog-app`](runtime/catalog-app) runs [`build.sh`](runtime/catalog-app/build.sh): it picks the first `package.json` that has a `build` script (root, then `web/`, `frontend/`, `dashboard/tax_ui/`, etc.), installs with npm/pnpm/yarn, runs `npm run build`, and copies static output into nginx — including **`dist/client`** (Cloudflare + Vite) before generic `dist`. **Next.js `standalone` / SSR apps** are not static files; keep them off the simple list or add a Node-based service. Repos that are not Node static builds stay **`liveUrl: null`** (Coming soon) until you add a custom Dockerfile or extend the builder.
+**Simple deploy vs runtime vs coming soon:** Manifest `liveUrl` and generated [`docker-compose.apps.yml`](docker-compose.apps.yml) cover **static** repos from [`scripts/lib/simple-deploy-repos.mjs`](scripts/lib/simple-deploy-repos.mjs) (image [`runtime/catalog-app`](runtime/catalog-app), [`build.sh`](runtime/catalog-app/build.sh): first `package.json` with `build`, then nginx) and **Node** repos from [`scripts/lib/runtime-node-repos.mjs`](scripts/lib/runtime-node-repos.mjs) (e.g. **Escape Among Us** → [`runtime/escape-among-us`](runtime/escape-among-us), Next.js + Socket.io on port 3000). Everything else stays **`liveUrl: null`** (Coming soon) until you add a service.
 
 **First-time server deploy:**
 

@@ -202,7 +202,7 @@
         "web"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://dwani-ai-talk.localhost/",
       "docsUrl": "https://github.com/dwani-ai/talk",
       "subdomain": "dwani-ai-talk"
     },
@@ -694,7 +694,7 @@
         "web"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://slabstech-slabstech-github-io.localhost/",
       "docsUrl": "https://github.com/slabstech/slabstech.github.io",
       "subdomain": "slabstech-slabstech-github-io"
     }

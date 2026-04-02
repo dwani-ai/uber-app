@@ -5,6 +5,7 @@
 export const SIMPLE_DEPLOY_REPOS = new Set([
   "dwani-ai/discovery",
   "dwani-ai/dwani-ai.github.io",
+  "dwani-ai/talk",
   // escape_among_us: Next.js output: "standalone" + Socket.io — needs a Node runtime, not static nginx
   "dwani-ai/uber-app",
   // agent-olympics-school: frontend/ is Python (Streamlit), not Node — not catalog-app
@@ -17,6 +18,8 @@ export const SIMPLE_DEPLOY_REPOS = new Set([
   "slabstech/book-nation-building-sir-m-vishveshwaraya",
   // Vite SPA (outDir: build)
   "slabstech/sanjeevini_frontend",
+  // Jekyll + remote theme
+  "slabstech/slabstech.github.io",
 ]);
 
 /** @param {string} repo */

@@ -9,8 +9,8 @@ ARG REPO
 RUN git clone --depth 1 "https://github.com/${REPO}.git" repo
 
 FROM node:22-alpine AS build
-# python3 + pip: MkDocs (and similar) static sites; make/g++: native Node deps
-RUN apk add --no-cache python3 py3-pip make g++
+# python3 + pip: MkDocs; ruby + bundler: Jekyll; make/g++: native deps
+RUN apk add --no-cache python3 py3-pip ruby ruby-bundler ruby-dev make g++ git
 # Upstream repos often have imperfect peer ranges (e.g. React 18 vs a lib asking for React 19).
 ENV NPM_CONFIG_LEGACY_PEER_DEPS=true
 WORKDIR /src

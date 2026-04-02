@@ -66,6 +66,43 @@ if [ -f "$ROOT/mkdocs.yml" ]; then
   exit 0
 fi
 
+# Jekyll sites (including remote_theme) can be built to _site.
+if [ -f "$ROOT/_config.yml" ] && [ -d "$ROOT/_layouts" ]; then
+  mkdir -p /artifact
+  cd "$ROOT"
+
+  if [ ! -f Gemfile ]; then
+    cat > Gemfile <<'EOF'
+source "https://rubygems.org"
+gem "jekyll", "~> 4.3"
+gem "jekyll-remote-theme"
+gem "jekyll-seo-tag"
+gem "jekyll-sitemap"
+gem "jekyll-feed"
+gem "jekyll-paginate"
+gem "webrick"
+EOF
+  fi
+
+  mkdir -p _includes
+  # Some repos reference these includes via inherited theme layouts but don't vendor them.
+  for inc in head-custom.html social-share.html; do
+    if [ ! -f "_includes/$inc" ]; then
+      printf '%s\n' '{% comment %}Auto-generated stub include for container build{% endcomment %}' > "_includes/$inc"
+    fi
+  done
+
+  bundle install --jobs 4
+  bundle exec jekyll build
+
+  cd "$ROOT"
+  if artifact_copy "."; then
+    exit 0
+  fi
+  printf '%s\n' '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Jekyll</title></head><body><h1>Jekyll build produced no <code>_site/</code> output</h1></body></html>' > /artifact/index.html
+  exit 0
+fi
+
 has_build_script() {
   f="$1/package.json"
   [ -f "$f" ] && grep -q '"build"' "$f"
@@ -106,6 +143,47 @@ fi
 
 echo "catalog-app: using app directory: $try_dirs"
 cd "$ROOT/$try_dirs"
+
+# dwani-ai/talk currently misses this frontend helper in repo; provide safe fallback.
+if [ -f "$ROOT/talk-ui/src/contexts/AuthContext.jsx" ] && [ ! -f "$ROOT/talk-ui/src/lib/authClient.js" ]; then
+  mkdir -p "$ROOT/talk-ui/src/lib"
+  cat > "$ROOT/talk-ui/src/lib/authClient.js" <<'EOF'
+const BASE = '/v1/auth'
+
+async function jsonRequest(path, init = {}) {
+  const res = await fetch(`${BASE}${path}`, {
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json', ...(init.headers || {}) },
+    ...init,
+  })
+  if (!res.ok) {
+    let message = `${res.status} ${res.statusText}`
+    try {
+      const body = await res.json()
+      if (body && body.detail) message = body.detail
+    } catch (_) {}
+    throw new Error(message)
+  }
+  return res.status === 204 ? null : res.json()
+}
+
+export function getCurrentUser() {
+  return jsonRequest('/me', { method: 'GET' })
+}
+
+export function signup(payload) {
+  return jsonRequest('/signup', { method: 'POST', body: JSON.stringify(payload) })
+}
+
+export function login(payload) {
+  return jsonRequest('/login', { method: 'POST', body: JSON.stringify(payload) })
+}
+
+export function logout() {
+  return jsonRequest('/logout', { method: 'POST' })
+}
+EOF
+fi
 
 # Relaxed peers for automated builds (Dockerfile also sets this).
 export NPM_CONFIG_LEGACY_PEER_DEPS="${NPM_CONFIG_LEGACY_PEER_DEPS:-true}"

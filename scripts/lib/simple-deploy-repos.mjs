@@ -8,7 +8,7 @@ export const SIMPLE_DEPLOY_REPOS = new Set([
   "dwani-ai/dwani-ai.github.io",
   "dwani-ai/escape_among_us",
   "dwani-ai/uber-app",
-  "sachinsshetty/agent-olympics-school",
+  // agent-olympics-school: frontend/ is Python (Streamlit), not Node — not catalog-app
   "sachinsshetty/thunder-flash",
   "sachinsshetty/uberTax_discovery",
   "sachinsshetty/xr-hack-gardenia",

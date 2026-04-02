@@ -274,7 +274,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": "http://sachinsshetty-agent-olympics-school.localhost/",
+      "liveUrl": null,
       "docsUrl": "https://github.com/sachinsshetty/agent-olympics-school",
       "subdomain": "sachinsshetty-agent-olympics-school"
     },
@@ -532,7 +532,7 @@
     },
     {
       "id": "sachinsshetty-xr-hack-gardenia",
-      "title": "XR hack — Gardenia",
+      "title": "XR hack \u2014 Gardenia",
       "repo": "sachinsshetty/xr-hack-gardenia",
       "categories": [
         "ai"
@@ -568,7 +568,7 @@
     },
     {
       "id": "slabstech-book-nation-building-sir-m-vishveshwaraya",
-      "title": "Nation-building — Sir M. Visvesvaraya",
+      "title": "Nation-building \u2014 Sir M. Visvesvaraya",
       "repo": "slabstech/book-nation-building-sir-m-vishveshwaraya",
       "categories": [
         "web"

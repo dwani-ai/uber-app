@@ -22,7 +22,7 @@ Everything is wired in **one project**: Node scripts under [`scripts/`](scripts/
 
 Equivalent: `make deploy`, `make manifest`, `make ci`, etc.
 
-**Simple deploy vs coming soon:** UberApp `liveUrl` and generated [`docker-compose.apps.yml`](docker-compose.apps.yml) only include repos listed in [`scripts/lib/simple-deploy-repos.mjs`](scripts/lib/simple-deploy-repos.mjs) (clone + root `npm run build` → nginx). Every other catalog row has **`liveUrl: null`**, shows **Coming soon** in the hub, and is served by the **Traefik stub** only until you add that repo to the list or give it a custom compose service.
+**Simple deploy vs coming soon:** UberApp `liveUrl` and generated [`docker-compose.apps.yml`](docker-compose.apps.yml) only include repos listed in [`scripts/lib/simple-deploy-repos.mjs`](scripts/lib/simple-deploy-repos.mjs). The image [`runtime/catalog-app`](runtime/catalog-app) runs [`build.sh`](runtime/catalog-app/build.sh): it picks the first `package.json` that has a `build` script (root, then `web/`, `frontend/`, `dashboard/tax_ui/`, etc.), installs with npm/pnpm/yarn, runs `npm run build`, and copies `dist` / `build` / `out` / `_site` into nginx. Repos that are not Node static builds stay **`liveUrl: null`** (Coming soon) until you add them with a custom Dockerfile or extend the builder.
 
 **First-time server deploy:**
 

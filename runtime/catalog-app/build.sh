@@ -12,6 +12,11 @@ artifact_copy() {
     cp -r "$base"/. /artifact/
     return 0
   fi
+  # Cloudflare Vite + wrangler: assets live in dist/client (SPA), not dist/index.html
+  if [ -d "$base/dist/client" ] && [ -n "$(ls -A "$base/dist/client" 2>/dev/null)" ]; then
+    cp -r "$base/dist/client"/. /artifact/
+    return 0
+  fi
   if [ -d "$base/dist" ] && [ -n "$(ls -A "$base/dist" 2>/dev/null)" ]; then
     cp -r "$base/dist"/. /artifact/
     return 0

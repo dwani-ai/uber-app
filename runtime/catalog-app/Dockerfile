@@ -18,5 +18,7 @@ COPY build.sh /src/build.sh
 RUN chmod +x /src/build.sh && /src/build.sh
 
 FROM nginx:1.27-alpine
+# Empty artifact must not leave the default "Welcome to nginx" index behind.
+RUN rm -rf /usr/share/nginx/html/*
 COPY --from=build /artifact/ /usr/share/nginx/html/
 COPY nginx.conf /etc/nginx/conf.d/default.conf

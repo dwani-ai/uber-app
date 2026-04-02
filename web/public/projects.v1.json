@@ -130,7 +130,7 @@
         "web"
       ],
       "description": null,
-      "liveUrl": "http://dwani-ai-escape-among-us.localhost/",
+      "liveUrl": null,
       "docsUrl": "https://github.com/dwani-ai/escape_among_us",
       "subdomain": "dwani-ai-escape-among-us"
     },
@@ -532,7 +532,7 @@
     },
     {
       "id": "sachinsshetty-xr-hack-gardenia",
-      "title": "XR hack \u2014 Gardenia",
+      "title": "XR hack — Gardenia",
       "repo": "sachinsshetty/xr-hack-gardenia",
       "categories": [
         "ai"
@@ -568,7 +568,7 @@
     },
     {
       "id": "slabstech-book-nation-building-sir-m-vishveshwaraya",
-      "title": "Nation-building \u2014 Sir M. Visvesvaraya",
+      "title": "Nation-building — Sir M. Visvesvaraya",
       "repo": "slabstech/book-nation-building-sir-m-vishveshwaraya",
       "categories": [
         "web"

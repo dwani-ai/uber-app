@@ -6,7 +6,7 @@
 export const SIMPLE_DEPLOY_REPOS = new Set([
   "dwani-ai/discovery",
   "dwani-ai/dwani-ai.github.io",
-  "dwani-ai/escape_among_us",
+  // escape_among_us: Next.js output: "standalone" + Socket.io — needs a Node runtime, not static nginx
   "dwani-ai/uber-app",
   // agent-olympics-school: frontend/ is Python (Streamlit), not Node — not catalog-app
   "sachinsshetty/thunder-flash",

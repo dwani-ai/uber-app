@@ -44,6 +44,11 @@ artifact_copy() {
   return 1
 }
 
+# dwani-ai/vision_benchmarks: markdown under docs/ but no mkdocs.yml (see overlay-vision-benchmarks-mkdocs.yml).
+if [ ! -f "$ROOT/mkdocs.yml" ] && [ -f "$ROOT/docs/setup.md" ] && [ -f "$ROOT/docs/vision_models.md" ] && [ -f "$ROOT/compose.yml" ] && [ -f /opt/overlay-vision-benchmarks-mkdocs.yml ]; then
+  cp /opt/overlay-vision-benchmarks-mkdocs.yml "$ROOT/mkdocs.yml"
+fi
+
 # MkDocs-only repos have no package.json; handle before Node discovery.
 if [ -f "$ROOT/mkdocs.yml" ]; then
   mkdir -p /artifact

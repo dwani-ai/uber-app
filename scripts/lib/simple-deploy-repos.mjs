@@ -10,9 +10,12 @@ export const SIMPLE_DEPLOY_REPOS = new Set([
   "dwani-ai/dwani-ai.github.io",
   "dwani-ai/talk",
   "dwani-ai/llm-recipes",
+  // vision_benchmarks: build.sh adds mkdocs overlay (docs/ only)
+  "dwani-ai/vision_benchmarks",
   // escape_among_us: Next.js output: "standalone" + Socket.io — needs a Node runtime, not static nginx
   "dwani-ai/uber-app",
   // agent-olympics-school: Gradio in runtime/agent-olympics-school (not static nginx)
+  "sachinsshetty/onwards",
   "sachinsshetty/passpredict",
   "sachinsshetty/thunder-flash",
   "sachinsshetty/uberTax_discovery",

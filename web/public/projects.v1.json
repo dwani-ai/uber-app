@@ -232,13 +232,13 @@
     },
     {
       "id": "dwani-ai-vision-benchmarks",
-      "title": "Vision Benchmarks",
+      "title": "Vision benchmarks",
       "repo": "dwani-ai/vision_benchmarks",
       "categories": [
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://dwani-ai-vision-benchmarks.localhost/",
       "docsUrl": "https://github.com/dwani-ai/vision_benchmarks",
       "subdomain": "dwani-ai-vision-benchmarks"
     },
@@ -406,7 +406,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://sachinsshetty-onwards.localhost/",
       "docsUrl": "https://github.com/sachinsshetty/onwards",
       "subdomain": "sachinsshetty-onwards"
     },

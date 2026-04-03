@@ -107,6 +107,8 @@ const titleOverrides = {
   "dwani-ai/escape_among_us": "Escape Among Us",
   "dwani-ai/llm-recipes": "LLM recipes",
   "dwani-ai/docs": "dwani.ai docs",
+  "dwani-ai/vision_benchmarks": "Vision benchmarks",
+  "sachinsshetty/onwards": "Onwards",
 };
 
 /**

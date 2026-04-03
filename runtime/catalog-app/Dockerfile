@@ -23,6 +23,7 @@ COPY talk-authClient.js /opt/talk-authClient.js
 COPY talk-apiClient.js /opt/talk-apiClient.js
 COPY talk-audio.js /opt/talk-audio.js
 COPY talk-session.js /opt/talk-session.js
+COPY overlay-vision-benchmarks-mkdocs.yml /opt/overlay-vision-benchmarks-mkdocs.yml
 RUN chmod +x /src/build.sh && /src/build.sh
 
 FROM nginx:1.27-alpine

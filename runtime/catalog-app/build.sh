@@ -49,13 +49,11 @@ if [ -f "$ROOT/mkdocs.yml" ]; then
   mkdir -p /artifact
   cd "$ROOT"
   if [ -f requirements.txt ]; then
-    python3 -m pip install --no-cache-dir --break-system-packages -r requirements.txt 2>/dev/null \
-      || python3 -m pip install --no-cache-dir -r requirements.txt 2>/dev/null \
-      || pip3 install --no-cache-dir -r requirements.txt
+    python3 -m pip install --no-cache-dir --break-system-packages -r requirements.txt \
+      || pip3 install --no-cache-dir --break-system-packages -r requirements.txt
   else
-    python3 -m pip install --no-cache-dir --break-system-packages mkdocs-material 2>/dev/null \
-      || python3 -m pip install --no-cache-dir mkdocs-material 2>/dev/null \
-      || pip3 install --no-cache-dir mkdocs-material
+    python3 -m pip install --no-cache-dir --break-system-packages mkdocs-material \
+      || pip3 install --no-cache-dir --break-system-packages mkdocs-material
   fi
   mkdocs build
   cd "$ROOT"
@@ -184,8 +182,27 @@ else
   npm install --no-audit --no-fund
 fi
 
+# Alpine + musl: npm can skip Rollup optional natives (vite build); see npm/cli#4828.
+if [ -d node_modules/rollup ]; then
+  _m=$(uname -m)
+  case "$_m" in
+    aarch64|arm64) _rp="@rollup/rollup-linux-arm64-musl" ;;
+    x86_64|amd64) _rp="@rollup/rollup-linux-x64-musl" ;;
+    *) _rp="" ;;
+  esac
+  if [ -n "$_rp" ]; then
+    npm install "$_rp" --no-save --no-audit --no-fund 2>/dev/null || true
+  fi
+fi
+
 if [ "${CATALOG_APP_STRICT_BUILD:-0}" = "1" ]; then
-  npm run build || npm run build:prod
+  if npm run build; then
+    :
+  elif npm run build:prod; then
+    :
+  else
+    exit 1
+  fi
 else
   npm run build 2>/dev/null || npm run build:prod 2>/dev/null || true
 fi

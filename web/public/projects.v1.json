@@ -274,7 +274,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://sachinsshetty-agent-olympics-school.localhost/",
       "docsUrl": "https://github.com/sachinsshetty/agent-olympics-school",
       "subdomain": "sachinsshetty-agent-olympics-school"
     },

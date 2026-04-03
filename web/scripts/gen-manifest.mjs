@@ -105,6 +105,8 @@ const titleOverrides = {
   "sachinsshetty/care_scribe_fe": "Care scribe (frontend)",
   "sachinsshetty/care_scribe": "Care scribe",
   "dwani-ai/escape_among_us": "Escape Among Us",
+  "dwani-ai/llm-recipes": "LLM recipes",
+  "dwani-ai/docs": "dwani.ai docs",
 };
 
 /**

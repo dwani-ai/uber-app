@@ -10,7 +10,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://dwani-ai-agent-recipes.localhost/",
       "docsUrl": "https://github.com/dwani-ai/agent-recipes",
       "subdomain": "dwani-ai-agent-recipes"
     },
@@ -52,13 +52,13 @@
     },
     {
       "id": "dwani-ai-docs",
-      "title": "Docs",
+      "title": "dwani.ai docs",
       "repo": "dwani-ai/docs",
       "categories": [
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://dwani-ai-docs.localhost/",
       "docsUrl": "https://github.com/dwani-ai/docs",
       "subdomain": "dwani-ai-docs"
     },
@@ -160,13 +160,13 @@
     },
     {
       "id": "dwani-ai-llm-recipes",
-      "title": "Llm Recipes",
+      "title": "LLM recipes",
       "repo": "dwani-ai/llm-recipes",
       "categories": [
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://dwani-ai-llm-recipes.localhost/",
       "docsUrl": "https://github.com/dwani-ai/llm-recipes",
       "subdomain": "dwani-ai-llm-recipes"
     },

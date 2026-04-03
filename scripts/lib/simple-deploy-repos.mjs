@@ -3,9 +3,13 @@
  * then build.sh (MkDocs → site/, or Node `npm run build` → dist/build/…) → nginx.
  */
 export const SIMPLE_DEPLOY_REPOS = new Set([
+  // Tier A docs (MkDocs)
+  "dwani-ai/agent-recipes",
+  "dwani-ai/docs",
   "dwani-ai/discovery",
   "dwani-ai/dwani-ai.github.io",
   "dwani-ai/talk",
+  "dwani-ai/llm-recipes",
   // escape_among_us: Next.js output: "standalone" + Socket.io — needs a Node runtime, not static nginx
   "dwani-ai/uber-app",
   // agent-olympics-school: frontend/ is Python (Streamlit), not Node — not catalog-app

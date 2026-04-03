@@ -2,6 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { isSimpleDeployRepo } from "../../scripts/lib/simple-deploy-repos.mjs";
+import { isRuntimeNodeRepo } from "../../scripts/lib/runtime-node-repos.mjs";
+import { isRuntimePythonRepo } from "../../scripts/lib/runtime-python-repos.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -69,6 +71,25 @@ const aiRepos = [
   "dwani-ai/docs",
 ];
 
+/**
+ * Shown in the hub when `liveUrl` is null and the project is tagged `web`.
+ * (Repos that cannot ship via catalog / runtime-node / runtime-python yet.)
+ */
+const stubWebDeployHints = {
+  "dwani-ai/artha":
+    "No app sources in the repo yet; cannot run a static or Node preview.",
+  "dwani-ai/swara":
+    "No app sources in the repo yet; cannot run a static or Node preview.",
+  "dwani-ai/drishti":
+    "Python/services only; no static front-end build for nginx.",
+  "sachinsshetty/care_scribe_fe":
+    "Component stub only (no `build` script / app tree in this fork).",
+  "slabstech/flex-fit-app":
+    "Android (Compose) project; not a static web export.",
+  "sachinsshetty/xr-hack-gardenia":
+    "Static build blocked: TypeScript errors in frontend/ (fix upstream, then re-add to simple-deploy).",
+};
+
 /** @type {Record<string, string>} */
 const titleOverrides = {
   "slabstech/gaganyatri.in": "Gaganyatri",
@@ -125,12 +146,16 @@ function uberappServiceUrl(hostLabel, domain) {
 }
 
 /**
- * liveUrl only for {@link isSimpleDeployRepo} — others are "coming soon" (null).
+ * liveUrl for static simple-deploy and Node runtime apps (see runtime-node-repos).
  * @param {string} repo
  * @returns {string | null}
  */
 function liveUrlForRepo(repo) {
-  if (!isSimpleDeployRepo(repo)) {
+  if (
+    !isSimpleDeployRepo(repo) &&
+    !isRuntimeNodeRepo(repo) &&
+    !isRuntimePythonRepo(repo)
+  ) {
     return null;
   }
   const domain = effectiveDeployDomain();
@@ -165,6 +190,17 @@ function idFromRepo(repo) {
     .toLowerCase();
 }
 
+/**
+ * @param {string} repo
+ * @param {("web"|"ai")[]} categories
+ * @param {string | null} liveUrl
+ */
+function descriptionForRepo(repo, categories, liveUrl) {
+  if (liveUrl != null) return null;
+  if (!categories.includes("web")) return null;
+  return stubWebDeployHints[repo] ?? null;
+}
+
 const webSet = new Set(webRepos);
 const aiSet = new Set(aiRepos);
 const allRepos = [...new Set([...webRepos, ...aiRepos])].sort((a, b) =>
@@ -176,13 +212,14 @@ const projects = allRepos.map((repo) => {
   const categories = [];
   if (webSet.has(repo)) categories.push("web");
   if (aiSet.has(repo)) categories.push("ai");
+  const liveUrl = liveUrlForRepo(repo);
   return {
     id: idFromRepo(repo),
     title: titleFromRepo(repo),
     repo,
     categories,
-    description: null,
-    liveUrl: liveUrlForRepo(repo),
+    description: descriptionForRepo(repo, categories, liveUrl),
+    liveUrl,
     docsUrl: `https://github.com/${repo}`,
     subdomain: idFromRepo(repo),
   };

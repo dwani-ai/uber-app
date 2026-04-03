@@ -1,19 +1,25 @@
 /**
- * Catalog `repo` strings (owner/name) that use runtime/catalog-app today: clone +
- * root npm install + npm run build → nginx static. Expand as you add Dockerfiles
- * or custom stacks for other projects.
+ * Catalog `repo` strings (owner/name) that use runtime/catalog-app: clone,
+ * then build.sh (MkDocs → site/, or Node `npm run build` → dist/build/…) → nginx.
  */
 export const SIMPLE_DEPLOY_REPOS = new Set([
   "dwani-ai/discovery",
   "dwani-ai/dwani-ai.github.io",
-  "dwani-ai/escape_among_us",
+  "dwani-ai/talk",
+  // escape_among_us: Next.js output: "standalone" + Socket.io — needs a Node runtime, not static nginx
   "dwani-ai/uber-app",
-  "sachinsshetty/agent-olympics-school",
+  // agent-olympics-school: frontend/ is Python (Streamlit), not Node — not catalog-app
   "sachinsshetty/thunder-flash",
   "sachinsshetty/uberTax_discovery",
-  "sachinsshetty/xr-hack-gardenia",
+  // xr-hack-gardenia: frontend `tsc -b` fails upstream (Hero.tsx / MUI); re-add when fixed.
   "slabstech/gaganyatri.in",
   "slabstech/sahana-website",
+  // MkDocs → runtime/catalog-app (build.sh: mkdocs build → site/)
+  "slabstech/book-nation-building-sir-m-vishveshwaraya",
+  // Vite SPA (outDir: build)
+  "slabstech/sanjeevini_frontend",
+  // Jekyll + remote theme
+  "slabstech/slabstech.github.io",
 ]);
 
 /** @param {string} repo */

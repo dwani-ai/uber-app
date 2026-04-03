@@ -14,15 +14,15 @@ Everything is wired in **one project**: Node scripts under [`scripts/`](scripts/
 | `npm run install:web` | `npm ci` in `web/` |
 | `npm run manifest` | Regenerate `web/public/projects.v1.json` (reads **`DOMAIN`** from `.env`) |
 | `npm run validate` | `docker compose config` (includes `docker-compose.apps.yml` if present) |
-| `npm run compose:apps` | Regenerate [`docker-compose.apps.yml`](docker-compose.apps.yml) (only [`simple-deploy-repos.mjs`](scripts/lib/simple-deploy-repos.mjs)) |
+| `npm run compose:apps` | Regenerate [`docker-compose.apps.yml`](docker-compose.apps.yml) ([`simple-deploy-repos.mjs`](scripts/lib/simple-deploy-repos.mjs) + [`runtime-node-repos.mjs`](scripts/lib/runtime-node-repos.mjs) + [`runtime-python-repos.mjs`](scripts/lib/runtime-python-repos.mjs)) |
 | `npm run stubs` | Regenerate [`traefik/dynamic/projects-stubs.yml`](traefik/dynamic/projects-stubs.yml) (needs `DOMAIN`; see below) |
-| `npm run deploy` | **Full pipeline:** `install:web` → manifest → **`compose:apps`** (simple-deploy list only) → stubs → compose validate → **build** → **`docker compose up -d`** |
+| `npm run deploy` | **Full pipeline:** `install:web` → manifest → **`compose:apps`** → stubs → compose validate → **build** → **`docker compose up -d`** |
 | `npm run deploy:build` | Same as deploy but **no** `up` (images only) |
 | `npm run ci` | Same checks as GitHub Actions (needs Docker on the machine) |
 
 Equivalent: `make deploy`, `make manifest`, `make ci`, etc.
 
-**Simple deploy vs coming soon:** UberApp `liveUrl` and generated [`docker-compose.apps.yml`](docker-compose.apps.yml) only include repos listed in [`scripts/lib/simple-deploy-repos.mjs`](scripts/lib/simple-deploy-repos.mjs) (clone + root `npm run build` → nginx). Every other catalog row has **`liveUrl: null`**, shows **Coming soon** in the hub, and is served by the **Traefik stub** only until you add that repo to the list or give it a custom compose service.
+**Simple deploy vs runtime vs coming soon:** Manifest `liveUrl` and generated [`docker-compose.apps.yml`](docker-compose.apps.yml) cover **static** repos from [`scripts/lib/simple-deploy-repos.mjs`](scripts/lib/simple-deploy-repos.mjs) (image [`runtime/catalog-app`](runtime/catalog-app): [`build.sh`](runtime/catalog-app/build.sh) runs **MkDocs** when `mkdocs.yml` is present, **Jekyll** when `_config.yml` + `_layouts/` exist, otherwise finds a `package.json` with `build` — including `talk-ui/` — then nginx), **Node** apps from [`scripts/lib/runtime-node-repos.mjs`](scripts/lib/runtime-node-repos.mjs) (e.g. **Escape Among Us** → [`runtime/escape-among-us`](runtime/escape-among-us), port 3000), and **Python** apps from [`scripts/lib/runtime-python-repos.mjs`](scripts/lib/runtime-python-repos.mjs) (e.g. **Workshop** Gradio → [`runtime/workshop`](runtime/workshop), port **8000**; set `DWANI_API_KEY` / `DWANI_API_BASE_URL` in `.env` for API calls). Remaining catalog rows stay **`liveUrl: null`** (Coming soon) until you add a service. Web-only rows without a deploy path get a short **`description`** in [`web/public/projects.v1.json`](web/public/projects.v1.json) (from [`web/scripts/gen-manifest.mjs`](web/scripts/gen-manifest.mjs)) explaining why (placeholder repo, Android-only, etc.).
 
 **First-time server deploy:**
 

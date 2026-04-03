@@ -13,6 +13,7 @@ export const SIMPLE_DEPLOY_REPOS = new Set([
   // escape_among_us: Next.js output: "standalone" + Socket.io — needs a Node runtime, not static nginx
   "dwani-ai/uber-app",
   // agent-olympics-school: Gradio in runtime/agent-olympics-school (not static nginx)
+  "sachinsshetty/passpredict",
   "sachinsshetty/thunder-flash",
   "sachinsshetty/uberTax_discovery",
   // xr-hack-gardenia: frontend `tsc -b` fails upstream (Hero.tsx / MUI); re-add when fixed.

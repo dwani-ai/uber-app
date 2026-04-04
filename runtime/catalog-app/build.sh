@@ -230,38 +230,32 @@ else
   npm install --no-audit --no-fund
 fi
 
-# Alpine + musl: npm can skip Rollup optional natives (vite build); see npm/cli#4828.
-if [ -d node_modules/rollup ]; then
-  _m=$(uname -m)
-  case "$_m" in
-    aarch64|arm64) _rp="@rollup/rollup-linux-arm64-musl" ;;
-    x86_64|amd64) _rp="@rollup/rollup-linux-x64-musl" ;;
-    *) _rp="" ;;
-  esac
-  if [ -n "$_rp" ]; then
-    npm install "$_rp" --no-save --no-audit --no-fund 2>/dev/null || true
-  fi
+# Alpine + musl: npm/cli#4828 — separate installs drop optional natives or @mui/system. Install every
+# needed musl native + @mui/system (when the app uses @mui/*) in a single `npm install`.
+_m=$(uname -m)
+case "$_m" in
+  aarch64|arm64) _rp="@rollup/rollup-linux-arm64-musl"; _swc="@swc/core-linux-arm64-musl" ;;
+  x86_64|amd64) _rp="@rollup/rollup-linux-x64-musl"; _swc="@swc/core-linux-x64-musl" ;;
+  *) _rp=""; _swc="" ;;
+esac
+
+set --
+if [ -d node_modules/rollup ] && [ -n "$_rp" ]; then
+  set -- "$@" "$_rp"
+fi
+if [ -d node_modules/@swc/core ] && [ -n "$_swc" ]; then
+  set -- "$@" "$_swc"
+fi
+if [ -f package.json ] && grep -q '"@mui/' package.json; then
+  set -- "$@" "@mui/system"
+fi
+if [ "$#" -gt 0 ]; then
+  npm install --no-save --no-audit --no-fund "$@"
 fi
 
-# Alpine + musl: @vitejs/plugin-react-swc / @swc/core optional binding may be missing.
-if [ -d node_modules/@swc/core ]; then
-  _m=$(uname -m)
-  case "$_m" in
-    aarch64|arm64) _swc="@swc/core-linux-arm64-musl" ;;
-    x86_64|amd64) _swc="@swc/core-linux-x64-musl" ;;
-    *) _swc="" ;;
-  esac
-  if [ -n "$_swc" ]; then
-    npm install "$_swc" --no-save --no-audit --no-fund 2>/dev/null || true
-  fi
-fi
-
+# Curated compose overrides (vite-only, etc.): must succeed — do not hide failures or ship the stub HTML.
 if [ -n "${CATALOG_APP_BUILD_CMD:-}" ]; then
-  if [ "${CATALOG_APP_STRICT_BUILD:-0}" = "1" ]; then
-    sh -c "$CATALOG_APP_BUILD_CMD" || exit 1
-  else
-    sh -c "$CATALOG_APP_BUILD_CMD" 2>/dev/null || true
-  fi
+  sh -c "$CATALOG_APP_BUILD_CMD" || exit 1
 elif [ "${CATALOG_APP_STRICT_BUILD:-0}" = "1" ]; then
   if npm run build; then
     :

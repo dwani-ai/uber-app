@@ -1,0 +1,17 @@
+# UberApp: sachinsshetty/agent-beats-dwani-discovery — build.sh copies *.md into catalog_md/ first (MkDocs forbids docs_dir: repo root).
+site_name: Agent Beats — dwani discovery
+site_url: https://github.com/sachinsshetty/agent-beats-dwani-discovery
+repo_url: https://github.com/sachinsshetty/agent-beats-dwani-discovery
+docs_dir: catalog_md
+site_dir: site
+theme:
+  name: material
+plugins:
+  - search
+markdown_extensions:
+  - tables
+  - pymdownx.superfences
+nav:
+  - Home: home.md
+  - Docs hub: docs-hub.md
+  - Agents: agents.md

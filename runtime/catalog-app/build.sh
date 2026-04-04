@@ -132,16 +132,28 @@ has_build_script() {
   [ -f "$f" ] && grep -q '"build"' "$f"
 }
 
-# Prefer subdirs where many monorepos keep the SPA (order matters).
+# Prefer explicit dir from compose/verify (monorepos where root `build` is not the static site).
 try_dirs=""
-if has_build_script "."; then try_dirs="."
-fi
-for d in web frontend client app ui talk-ui dashboard/tax_ui packages/web packages/frontend; do
-  if [ -z "$try_dirs" ] && [ -d "$d" ] && has_build_script "$d"; then
-    try_dirs="$d"
-    break
+if [ -n "${CATALOG_APP_DIR:-}" ]; then
+  if [ -d "$ROOT/$CATALOG_APP_DIR" ] && has_build_script "$CATALOG_APP_DIR"; then
+    try_dirs="$CATALOG_APP_DIR"
+  elif [ "${CATALOG_APP_STRICT_BUILD:-0}" = "1" ]; then
+    echo "catalog-app: CATALOG_APP_DIR=${CATALOG_APP_DIR} missing or has no package.json build script" >&2
+    exit 1
   fi
-done
+fi
+
+# Prefer subdirs where many monorepos keep the SPA (order matters).
+if [ -z "$try_dirs" ] && has_build_script "."; then try_dirs="."
+fi
+if [ -z "$try_dirs" ]; then
+  for d in web frontend client app ui sanjeevini-ui talk-ui dashboard/tax_ui packages/web packages/frontend; do
+    if [ -d "$d" ] && has_build_script "$d"; then
+      try_dirs="$d"
+      break
+    fi
+  done
+fi
 
 # Last resort: shallow find package.json with "build" (maxdepth 4)
 if [ -z "$try_dirs" ]; then
@@ -200,7 +212,26 @@ if [ -d node_modules/rollup ]; then
   fi
 fi
 
-if [ "${CATALOG_APP_STRICT_BUILD:-0}" = "1" ]; then
+# Alpine + musl: @vitejs/plugin-react-swc / @swc/core optional binding may be missing.
+if [ -d node_modules/@swc/core ]; then
+  _m=$(uname -m)
+  case "$_m" in
+    aarch64|arm64) _swc="@swc/core-linux-arm64-musl" ;;
+    x86_64|amd64) _swc="@swc/core-linux-x64-musl" ;;
+    *) _swc="" ;;
+  esac
+  if [ -n "$_swc" ]; then
+    npm install "$_swc" --no-save --no-audit --no-fund 2>/dev/null || true
+  fi
+fi
+
+if [ -n "${CATALOG_APP_BUILD_CMD:-}" ]; then
+  if [ "${CATALOG_APP_STRICT_BUILD:-0}" = "1" ]; then
+    sh -c "$CATALOG_APP_BUILD_CMD" || exit 1
+  else
+    sh -c "$CATALOG_APP_BUILD_CMD" 2>/dev/null || true
+  fi
+elif [ "${CATALOG_APP_STRICT_BUILD:-0}" = "1" ]; then
   if npm run build; then
     :
   elif npm run build:prod; then
@@ -220,6 +251,12 @@ fi
 # Some tools write to cwd only
 cd "$ROOT/$try_dirs"
 if artifact_copy "."; then
+  exit 0
+fi
+
+# Monorepo Vite apps may emit outside appDir (e.g. openclaw ui/ → ../dist/control-ui).
+cd "$ROOT"
+if [ -n "${CATALOG_APP_ARTIFACT_DIR:-}" ] && artifact_copy "$CATALOG_APP_ARTIFACT_DIR"; then
   exit 0
 fi
 

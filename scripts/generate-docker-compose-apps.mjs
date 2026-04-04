@@ -8,7 +8,12 @@ import { writeFileSync, readFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { applyEnv } from "./lib/load-env.mjs";
-import { isSimpleDeployRepo } from "./lib/simple-deploy-repos.mjs";
+import {
+  isSimpleDeployRepo,
+  catalogAppDir,
+  catalogAppBuildCmd,
+  catalogAppArtifactDir,
+} from "./lib/simple-deploy-repos.mjs";
 import {
   isRuntimeNodeRepo,
   runtimeNodePort,
@@ -179,6 +184,18 @@ for (const p of projects) {
   lines.push(`      dockerfile: Dockerfile`);
   lines.push(`      args:`);
   lines.push(`        REPO: ${repoQuoted}`);
+  const appDir = catalogAppDir(repo);
+  if (appDir) {
+    lines.push(`        CATALOG_APP_DIR: ${JSON.stringify(appDir)}`);
+  }
+  const buildCmd = catalogAppBuildCmd(repo);
+  if (buildCmd) {
+    lines.push(`        CATALOG_APP_BUILD_CMD: ${JSON.stringify(buildCmd)}`);
+  }
+  const artifactDir = catalogAppArtifactDir(repo);
+  if (artifactDir) {
+    lines.push(`        CATALOG_APP_ARTIFACT_DIR: ${JSON.stringify(artifactDir)}`);
+  }
   lines.push(`    restart: unless-stopped`);
   lines.push(`    networks:`);
   lines.push(`      - edge`);

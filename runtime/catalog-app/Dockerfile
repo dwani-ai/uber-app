@@ -16,6 +16,13 @@ ENV NPM_CONFIG_LEGACY_PEER_DEPS=true
 # 1 = fail if install/build produces no static output (use with verify:catalog-apps). Default: lenient for prod.
 ARG CATALOG_APP_STRICT_BUILD=0
 ENV CATALOG_APP_STRICT_BUILD=$CATALOG_APP_STRICT_BUILD
+# Optional: force Node app root (e.g. ui/, sanjeevini-ui/) and/or custom build command (see simple-deploy-repos.mjs).
+ARG CATALOG_APP_DIR=
+ARG CATALOG_APP_BUILD_CMD=
+ARG CATALOG_APP_ARTIFACT_DIR=
+ENV CATALOG_APP_DIR=$CATALOG_APP_DIR
+ENV CATALOG_APP_BUILD_CMD=$CATALOG_APP_BUILD_CMD
+ENV CATALOG_APP_ARTIFACT_DIR=$CATALOG_APP_ARTIFACT_DIR
 WORKDIR /src
 COPY --from=clone /work/repo ./
 COPY build.sh /src/build.sh

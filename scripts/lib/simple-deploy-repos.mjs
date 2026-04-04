@@ -4,6 +4,8 @@
  * - buildCmd: shell command run in appDir instead of `npm run build` (e.g. vite-only when tsc is broken upstream).
  */
 export const SIMPLE_DEPLOY_CATALOG_OVERRIDES = {
+  /** Root Vite SPA; `tsc -b` fails in container — vite alone writes `build/`. */
+  "dwani-ai/dwani-ai.github.io": { buildCmd: "npx vite build" },
   /** Vite outDir is repo-root dist/control-ui (see ui/vite.config). */
   "sachinsshetty/openclaw": { appDir: "ui", artifactDir: "dist/control-ui" },
   /** Upstream `tsc && vite build` fails (CSS module typings); Vite alone is enough for static nginx. */

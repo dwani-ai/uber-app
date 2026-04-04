@@ -5,6 +5,17 @@ set -eu
 ROOT=/src
 cd "$ROOT"
 
+# When docker-compose build `args:` omit CATALOG_* (old compose, cached build), still pick the right app dir / command.
+case "${CLONE_REPO:-}" in
+  sachinsshetty/xr-hack-gardenia)
+    CATALOG_APP_DIR=${CATALOG_APP_DIR:-frontend}
+    CATALOG_APP_BUILD_CMD=${CATALOG_APP_BUILD_CMD:-npx vite build}
+    ;;
+  dwani-ai/dwani-ai.github.io)
+    CATALOG_APP_BUILD_CMD=${CATALOG_APP_BUILD_CMD:-npx vite build}
+    ;;
+esac
+
 artifact_copy() {
   base="$1"
   if [ ! -d "$base" ]; then return 1; fi

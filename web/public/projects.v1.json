@@ -10,7 +10,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://dwani-ai-agent-recipes.localhost/",
       "docsUrl": "https://github.com/dwani-ai/agent-recipes",
       "subdomain": "dwani-ai-agent-recipes"
     },
@@ -52,13 +52,13 @@
     },
     {
       "id": "dwani-ai-docs",
-      "title": "Docs",
+      "title": "dwani.ai docs",
       "repo": "dwani-ai/docs",
       "categories": [
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://dwani-ai-docs.localhost/",
       "docsUrl": "https://github.com/dwani-ai/docs",
       "subdomain": "dwani-ai-docs"
     },
@@ -160,13 +160,13 @@
     },
     {
       "id": "dwani-ai-llm-recipes",
-      "title": "Llm Recipes",
+      "title": "LLM recipes",
       "repo": "dwani-ai/llm-recipes",
       "categories": [
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://dwani-ai-llm-recipes.localhost/",
       "docsUrl": "https://github.com/dwani-ai/llm-recipes",
       "subdomain": "dwani-ai-llm-recipes"
     },
@@ -232,13 +232,13 @@
     },
     {
       "id": "dwani-ai-vision-benchmarks",
-      "title": "Vision Benchmarks",
+      "title": "Vision benchmarks",
       "repo": "dwani-ai/vision_benchmarks",
       "categories": [
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://dwani-ai-vision-benchmarks.localhost/",
       "docsUrl": "https://github.com/dwani-ai/vision_benchmarks",
       "subdomain": "dwani-ai-vision-benchmarks"
     },
@@ -274,7 +274,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://sachinsshetty-agent-olympics-school.localhost/",
       "docsUrl": "https://github.com/sachinsshetty/agent-olympics-school",
       "subdomain": "sachinsshetty-agent-olympics-school"
     },
@@ -406,7 +406,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://sachinsshetty-onwards.localhost/",
       "docsUrl": "https://github.com/sachinsshetty/onwards",
       "subdomain": "sachinsshetty-onwards"
     },
@@ -430,7 +430,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://sachinsshetty-passpredict.localhost/",
       "docsUrl": "https://github.com/sachinsshetty/passpredict",
       "subdomain": "sachinsshetty-passpredict"
     },

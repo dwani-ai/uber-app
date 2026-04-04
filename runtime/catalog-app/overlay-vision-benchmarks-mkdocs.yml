@@ -1,0 +1,16 @@
+# UberApp: dwani-ai/vision_benchmarks has docs/*.md but no mkdocs.yml.
+site_name: Vision benchmarks
+site_url: https://github.com/dwani-ai/vision_benchmarks/
+repo_url: https://github.com/dwani-ai/vision_benchmarks
+docs_dir: docs
+site_dir: site
+theme:
+  name: material
+plugins:
+  - search
+markdown_extensions:
+  - tables
+  - pymdownx.superfences
+nav:
+  - Setup: setup.md
+  - Vision models: vision_models.md

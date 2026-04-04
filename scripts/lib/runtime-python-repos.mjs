@@ -8,9 +8,28 @@
  *   composeEnv already defines SCHOOL_BACKEND_URL.
  * Optional dependsOn: service ids for docker compose depends_on.
  * Optional dockerfile: main service Dockerfile (default Dockerfile).
+ * Optional embedPath: path appended to manifest liveUrl so "Run in UberApp" opens Swagger (e.g. "/docs").
+ *
+ * Not wired yet: dwani-ai/docs-indic-server (requirements e.g. decord lack manylinux aarch64; needs amd64 build/QEMU or slimmer upstream deps).
  */
 export const RUNTIME_PYTHON_REPOS = new Map([
   ["dwani-ai/workshop", { context: "./runtime/workshop", port: 8000 }],
+  [
+    "dwani-ai/dwani-api-server",
+    {
+      context: "./runtime/dwani-api-server",
+      port: 18888,
+      embedPath: "/docs",
+    },
+  ],
+  [
+    "sachinsshetty/faster-whisper-server",
+    {
+      context: "./runtime/faster-whisper-server",
+      port: 8000,
+      embedPath: "/docs",
+    },
+  ],
   [
     "sachinsshetty/agent-olympics-school",
     {
@@ -38,4 +57,11 @@ export function isRuntimePythonRepo(repo) {
 /** @param {string} repo */
 export function runtimePythonBuild(repo) {
   return RUNTIME_PYTHON_REPOS.get(repo);
+}
+
+/** @param {string} repo @returns {string} path like "/docs" or "" */
+export function runtimePythonEmbedPath(repo) {
+  const ep = RUNTIME_PYTHON_REPOS.get(repo)?.embedPath;
+  if (!ep || typeof ep !== "string") return "";
+  return ep.startsWith("/") ? ep : `/${ep}`;
 }

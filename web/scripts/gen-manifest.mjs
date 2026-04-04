@@ -3,7 +3,10 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { isSimpleDeployRepo } from "../../scripts/lib/simple-deploy-repos.mjs";
 import { isRuntimeNodeRepo } from "../../scripts/lib/runtime-node-repos.mjs";
-import { isRuntimePythonRepo } from "../../scripts/lib/runtime-python-repos.mjs";
+import {
+  isRuntimePythonRepo,
+  runtimePythonEmbedPath,
+} from "../../scripts/lib/runtime-python-repos.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -167,10 +170,19 @@ function liveUrlForRepo(repo) {
     return null;
   }
   const domain = effectiveDeployDomain();
+  let base;
   if (repo === "dwani-ai/uber-app") {
-    return uberappServiceUrl("hub", domain);
+    base = uberappServiceUrl("hub", domain);
+  } else {
+    base = uberappServiceUrl(idFromRepo(repo), domain);
   }
-  return uberappServiceUrl(idFromRepo(repo), domain);
+  if (isRuntimePythonRepo(repo)) {
+    const embed = runtimePythonEmbedPath(repo);
+    if (embed) {
+      return base.replace(/\/$/, "") + embed;
+    }
+  }
+  return base;
 }
 
 function titleFromRepo(repo) {

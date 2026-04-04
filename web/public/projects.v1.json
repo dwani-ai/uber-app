@@ -106,7 +106,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://dwani-ai-dwani-api-server.localhost/docs",
       "docsUrl": "https://github.com/dwani-ai/dwani-api-server",
       "subdomain": "dwani-ai-dwani-api-server"
     },
@@ -334,7 +334,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://sachinsshetty-faster-whisper-server.localhost/docs",
       "docsUrl": "https://github.com/sachinsshetty/faster-whisper-server",
       "subdomain": "sachinsshetty-faster-whisper-server"
     },

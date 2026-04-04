@@ -1,0 +1,19 @@
+# UberApp: sachinsshetty/biryani_bot — docs/*.md, no mkdocs.yml.
+site_name: Biryani Bot
+site_url: https://github.com/sachinsshetty/biryani_bot
+repo_url: https://github.com/sachinsshetty/biryani_bot
+docs_dir: docs
+site_dir: site
+theme:
+  name: material
+plugins:
+  - search
+markdown_extensions:
+  - tables
+  - pymdownx.superfences
+nav:
+  - Setup: setup.md
+  - Action: action.md
+  - Links: links.md
+  - Papers: papers.md
+  - Notes: sachin_README.md

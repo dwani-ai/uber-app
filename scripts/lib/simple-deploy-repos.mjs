@@ -49,6 +49,10 @@ export const SIMPLE_DEPLOY_REPOS = new Set([
   "dwani-ai/uber-app",
   // agent-olympics-school: Gradio in runtime/agent-olympics-school (not static nginx)
   "sachinsshetty/onwards",
+  // MkDocs via build.sh overlays (no upstream mkdocs.yml)
+  "sachinsshetty/agent-beats-dwani-discovery",
+  "sachinsshetty/biryani_bot",
+  "sachinsshetty/inference_hackathon",
   "sachinsshetty/passpredict",
   "sachinsshetty/thunder-flash",
   "sachinsshetty/track-me-not",

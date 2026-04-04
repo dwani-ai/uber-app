@@ -256,13 +256,13 @@
     },
     {
       "id": "sachinsshetty-agent-beats-dwani-discovery",
-      "title": "Agent Beats Dwani Discovery",
+      "title": "Agent Beats (discovery)",
       "repo": "sachinsshetty/agent-beats-dwani-discovery",
       "categories": [
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://sachinsshetty-agent-beats-dwani-discovery.localhost/",
       "docsUrl": "https://github.com/sachinsshetty/agent-beats-dwani-discovery",
       "subdomain": "sachinsshetty-agent-beats-dwani-discovery"
     },
@@ -286,7 +286,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://sachinsshetty-biryani-bot.localhost/",
       "docsUrl": "https://github.com/sachinsshetty/biryani_bot",
       "subdomain": "sachinsshetty-biryani-bot"
     },
@@ -352,13 +352,13 @@
     },
     {
       "id": "sachinsshetty-inference-hackathon",
-      "title": "Inference Hackathon",
+      "title": "Inference hackathon",
       "repo": "sachinsshetty/inference_hackathon",
       "categories": [
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://sachinsshetty-inference-hackathon.localhost/",
       "docsUrl": "https://github.com/sachinsshetty/inference_hackathon",
       "subdomain": "sachinsshetty-inference-hackathon"
     },

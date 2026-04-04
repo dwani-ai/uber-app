@@ -60,11 +60,31 @@ if [ ! -f "$ROOT/mkdocs.yml" ] && [ -f "$ROOT/docs/setup.md" ] && [ -f "$ROOT/do
   cp /opt/overlay-vision-benchmarks-mkdocs.yml "$ROOT/mkdocs.yml"
 fi
 
+# sachinsshetty/agent-beats-dwani-discovery: agents/ + docs/, no mkdocs.yml (flatten into catalog_md/ for MkDocs).
+if [ ! -f "$ROOT/mkdocs.yml" ] && [ -f "$ROOT/agents/README.md" ] && [ -f "$ROOT/docs/README.md" ] && [ -f /opt/overlay-agent-beats-dwani-discovery-mkdocs.yml ]; then
+  mkdir -p "$ROOT/catalog_md"
+  cp -f "$ROOT/README.md" "$ROOT/catalog_md/home.md"
+  cp -f "$ROOT/docs/README.md" "$ROOT/catalog_md/docs-hub.md"
+  cp -f "$ROOT/agents/README.md" "$ROOT/catalog_md/agents.md"
+  cp /opt/overlay-agent-beats-dwani-discovery-mkdocs.yml "$ROOT/mkdocs.yml"
+fi
+
+# sachinsshetty/biryani_bot: docs/*.md only.
+if [ ! -f "$ROOT/mkdocs.yml" ] && [ -f "$ROOT/docs/setup.md" ] && [ -f "$ROOT/docs/action.md" ] && [ -f /opt/overlay-biryani-bot-mkdocs.yml ]; then
+  cp /opt/overlay-biryani-bot-mkdocs.yml "$ROOT/mkdocs.yml"
+fi
+
+# sachinsshetty/inference_hackathon: docs/*.md only.
+if [ ! -f "$ROOT/mkdocs.yml" ] && [ -f "$ROOT/docs/hackathon_guide.md" ] && [ -f "$ROOT/docs/vllm_setup.md" ] && [ -f /opt/overlay-inference-hackathon-mkdocs.yml ]; then
+  cp /opt/overlay-inference-hackathon-mkdocs.yml "$ROOT/mkdocs.yml"
+fi
+
 # MkDocs-only repos have no package.json; handle before Node discovery.
 if [ -f "$ROOT/mkdocs.yml" ]; then
   mkdir -p /artifact
   cd "$ROOT"
-  if [ -f requirements.txt ]; then
+  # App repos often ship a root requirements.txt for FastAPI/OpenCV/etc. — only use -r when it lists MkDocs.
+  if [ -f requirements.txt ] && grep -qiE '(^|[[:space:]])mkdocs' requirements.txt; then
     python3 -m pip install --no-cache-dir --break-system-packages -r requirements.txt \
       || pip3 install --no-cache-dir --break-system-packages -r requirements.txt
   else

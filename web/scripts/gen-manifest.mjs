@@ -110,6 +110,9 @@ const titleOverrides = {
   "sachinsshetty/track-me-not": "Track me not",
   "sachinsshetty/openclaw": "OpenClaw",
   "dwani-ai/sanjeevini": "Sanjeevini",
+  "sachinsshetty/agent-beats-dwani-discovery": "Agent Beats (discovery)",
+  "sachinsshetty/biryani_bot": "Biryani Bot",
+  "sachinsshetty/inference_hackathon": "Inference hackathon",
 };
 
 /**

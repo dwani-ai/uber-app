@@ -34,6 +34,9 @@ COPY talk-apiClient.js /opt/talk-apiClient.js
 COPY talk-audio.js /opt/talk-audio.js
 COPY talk-session.js /opt/talk-session.js
 COPY overlay-vision-benchmarks-mkdocs.yml /opt/overlay-vision-benchmarks-mkdocs.yml
+COPY overlay-agent-beats-dwani-discovery-mkdocs.yml /opt/overlay-agent-beats-dwani-discovery-mkdocs.yml
+COPY overlay-biryani-bot-mkdocs.yml /opt/overlay-biryani-bot-mkdocs.yml
+COPY overlay-inference-hackathon-mkdocs.yml /opt/overlay-inference-hackathon-mkdocs.yml
 RUN chmod +x /src/build.sh && /src/build.sh
 
 FROM nginx:1.27-alpine

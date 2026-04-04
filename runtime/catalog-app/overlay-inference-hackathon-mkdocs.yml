@@ -1,0 +1,21 @@
+# UberApp: sachinsshetty/inference_hackathon — docs/*.md, no mkdocs.yml.
+site_name: Inference hackathon
+site_url: https://github.com/sachinsshetty/inference_hackathon
+repo_url: https://github.com/sachinsshetty/inference_hackathon
+docs_dir: docs
+site_dir: site
+theme:
+  name: material
+plugins:
+  - search
+markdown_extensions:
+  - tables
+  - pymdownx.superfences
+nav:
+  - Hackathon guide: hackathon_guide.md
+  - Dwani pitch: dwani_pitch.md
+  - Docker experiments: docker-experiments.md
+  - Llama.cpp: llama_cpp_setup.md
+  - TensorRT: tensorRT-setup.md
+  - vLLM: vllm_setup.md
+  - Models: models.md

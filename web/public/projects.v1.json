@@ -34,7 +34,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://dwani-ai-asr-indic-server.localhost/docs",
       "docsUrl": "https://github.com/dwani-ai/asr-indic-server",
       "subdomain": "dwani-ai-asr-indic-server"
     },
@@ -70,7 +70,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://dwani-ai-docs-indic-server.localhost/",
       "docsUrl": "https://github.com/dwani-ai/docs-indic-server",
       "subdomain": "dwani-ai-docs-indic-server"
     },
@@ -154,7 +154,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://dwani-ai-llm-indic-server.localhost/docs",
       "docsUrl": "https://github.com/dwani-ai/llm-indic-server",
       "subdomain": "dwani-ai-llm-indic-server"
     },
@@ -214,7 +214,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://dwani-ai-tts-indic-server.localhost/docs",
       "docsUrl": "https://github.com/dwani-ai/tts-indic-server",
       "subdomain": "dwani-ai-tts-indic-server"
     },
@@ -550,7 +550,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://slabstech-audiocraft-tts-server.localhost/docs",
       "docsUrl": "https://github.com/slabstech/audiocraft-tts-server",
       "subdomain": "slabstech-audiocraft-tts-server"
     },
@@ -646,7 +646,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://slabstech-parler-tts-server.localhost/docs",
       "docsUrl": "https://github.com/slabstech/parler-tts-server",
       "subdomain": "slabstech-parler-tts-server"
     },

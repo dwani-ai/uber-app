@@ -1,0 +1,18 @@
+# UberApp: dwani-ai/docs-indic-server — docs/*.md only (no FastAPI deploy in UberApp).
+site_name: Docs Indic server
+site_url: https://github.com/dwani-ai/docs-indic-server
+repo_url: https://github.com/dwani-ai/docs-indic-server
+docs_dir: docs
+site_dir: site
+theme:
+  name: material
+plugins:
+  - search
+markdown_extensions:
+  - tables
+  - pymdownx.superfences
+nav:
+  - GH-200 setup: gh-200-setup.md
+  - User requirements: user_requirements.md
+  - Model Mistral NeMo: model_mistral_nemo.md
+  - Model Pixtral: model_pixtral.md

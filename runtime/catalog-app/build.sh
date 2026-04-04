@@ -74,6 +74,11 @@ if [ ! -f "$ROOT/mkdocs.yml" ] && [ -f "$ROOT/docs/setup.md" ] && [ -f "$ROOT/do
   cp /opt/overlay-biryani-bot-mkdocs.yml "$ROOT/mkdocs.yml"
 fi
 
+# dwani-ai/docs-indic-server: docs/*.md only (MkDocs site in UberApp; GPU API not deployed here).
+if [ ! -f "$ROOT/mkdocs.yml" ] && [ -f "$ROOT/docs/gh-200-setup.md" ] && [ -f "$ROOT/docs/user_requirements.md" ] && [ -f /opt/overlay-docs-indic-server-mkdocs.yml ]; then
+  cp /opt/overlay-docs-indic-server-mkdocs.yml "$ROOT/mkdocs.yml"
+fi
+
 # sachinsshetty/inference_hackathon: docs/*.md only.
 if [ ! -f "$ROOT/mkdocs.yml" ] && [ -f "$ROOT/docs/hackathon_guide.md" ] && [ -f "$ROOT/docs/vllm_setup.md" ] && [ -f /opt/overlay-inference-hackathon-mkdocs.yml ]; then
   cp /opt/overlay-inference-hackathon-mkdocs.yml "$ROOT/mkdocs.yml"

@@ -37,6 +37,7 @@ COPY overlay-vision-benchmarks-mkdocs.yml /opt/overlay-vision-benchmarks-mkdocs.
 COPY overlay-agent-beats-dwani-discovery-mkdocs.yml /opt/overlay-agent-beats-dwani-discovery-mkdocs.yml
 COPY overlay-biryani-bot-mkdocs.yml /opt/overlay-biryani-bot-mkdocs.yml
 COPY overlay-inference-hackathon-mkdocs.yml /opt/overlay-inference-hackathon-mkdocs.yml
+COPY overlay-docs-indic-server-mkdocs.yml /opt/overlay-docs-indic-server-mkdocs.yml
 RUN chmod +x /src/build.sh && /src/build.sh
 
 FROM nginx:1.27-alpine

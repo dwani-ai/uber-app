@@ -9,8 +9,7 @@
  * Optional dependsOn: service ids for docker compose depends_on.
  * Optional dockerfile: main service Dockerfile (default Dockerfile).
  * Optional embedPath: path appended to manifest liveUrl so "Run in UberApp" opens Swagger (e.g. "/docs").
- *
- * Not wired yet: dwani-ai/docs-indic-server (requirements e.g. decord lack manylinux aarch64; needs amd64 build/QEMU or slimmer upstream deps).
+ * Optional gpus: when true, compose sets `gpus: all` (NVIDIA Container Toolkit + Compose v2 on the host).
  */
 export const RUNTIME_PYTHON_REPOS = new Map([
   ["dwani-ai/workshop", { context: "./runtime/workshop", port: 8000 }],
@@ -28,6 +27,51 @@ export const RUNTIME_PYTHON_REPOS = new Map([
       context: "./runtime/faster-whisper-server",
       port: 8000,
       embedPath: "/docs",
+    },
+  ],
+  [
+    "dwani-ai/asr-indic-server",
+    {
+      context: "./runtime/asr-indic-server",
+      port: 10803,
+      embedPath: "/docs",
+      gpus: true,
+    },
+  ],
+  [
+    "dwani-ai/tts-indic-server",
+    {
+      context: "./runtime/tts-indic-server",
+      port: 10804,
+      embedPath: "/docs",
+      gpus: true,
+    },
+  ],
+  [
+    "dwani-ai/llm-indic-server",
+    {
+      context: "./runtime/llm-indic-server",
+      port: 7860,
+      embedPath: "/docs",
+      gpus: true,
+    },
+  ],
+  [
+    "slabstech/parler-tts-server",
+    {
+      context: "./runtime/parler-tts-server",
+      port: 8000,
+      embedPath: "/docs",
+      gpus: true,
+    },
+  ],
+  [
+    "slabstech/audiocraft-tts-server",
+    {
+      context: "./runtime/audiocraft-tts-server",
+      port: 8000,
+      embedPath: "/docs",
+      gpus: true,
     },
   ],
   [

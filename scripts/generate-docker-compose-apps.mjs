@@ -44,7 +44,8 @@ const lines = [
   "# Regenerate: npm run compose:apps (included in deploy after manifest).",
   "# catalog-app = static nginx; escape-among-us = Next :3000; workshop = Gradio :8000;",
   "# agent-olympics-school = Gradio :8080 + FastAPI sidecar :8000;",
-  "# dwani-api-server :18888, faster-whisper-server :8000 (manifest liveUrl → …/docs for Swagger in hub iframe).",
+  "# dwani-api-server :18888, faster-whisper-server :8000 (manifest liveUrl → …/docs where set).",
+  "# GPU Python: asr :10803, tts :10804, llm-indic :7860, parler + audiocraft :8000 (`gpus: all`).",
   "",
   "services:",
 ];
@@ -135,6 +136,9 @@ for (const p of projects) {
     lines.push(`      dockerfile: ${mainDockerfile}`);
     lines.push(`    image: uber-app-${id}:local`);
     lines.push(`    restart: unless-stopped`);
+    if (cfg.gpus) {
+      lines.push(`    gpus: all`);
+    }
     if (cfg.dependsOn?.length) {
       lines.push(`    depends_on:`);
       for (const dep of cfg.dependsOn) {

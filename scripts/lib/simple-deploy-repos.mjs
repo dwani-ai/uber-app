@@ -45,6 +45,8 @@ export const SIMPLE_DEPLOY_REPOS = new Set([
   "dwani-ai/llm-recipes",
   // vision_benchmarks: build.sh adds mkdocs overlay (docs/ only)
   "dwani-ai/vision_benchmarks",
+  // docs-indic-server: MkDocs overlay only (GPU API stack is separate runtime-python GPU services)
+  "dwani-ai/docs-indic-server",
   // escape_among_us: Next.js output: "standalone" + Socket.io — needs a Node runtime, not static nginx
   "dwani-ai/uber-app",
   // agent-olympics-school: Gradio in runtime/agent-olympics-school (not static nginx)

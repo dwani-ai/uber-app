@@ -7,13 +7,18 @@
  *   node scripts/verify-catalog-apps.mjs --repo dwani-ai/discovery
  *
  * Env:
- *   VERIFY_CATALOG_PLATFORM — e.g. linux/amd64 for the same arch as most cloud VMs (needs QEMU/binfmt on ARM Macs).
+ *   VERIFY_CATALOG_PLATFORM — e.g. linux/amd64 to match a typical **amd64** cloud VM (use on ARM laptops with QEMU/binfmt; omit on the VM itself).
  *   VERIFY_CATALOG_SKIP — comma-separated owner/name repos to skip (e.g. local ARM quirks).
  */
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { SIMPLE_DEPLOY_REPOS } from "./lib/simple-deploy-repos.mjs";
+import {
+  SIMPLE_DEPLOY_REPOS,
+  catalogAppDir,
+  catalogAppBuildCmd,
+  catalogAppArtifactDir,
+} from "./lib/simple-deploy-repos.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const dockerfile = join(root, "runtime/catalog-app/Dockerfile");
@@ -42,6 +47,14 @@ const failures = [];
 for (const repo of repos) {
   const tag = `catalog-verify:${repo.replace(/\//g, "-")}`;
   console.log(`\n========== ${repo} → ${tag} ==========\n`);
+  const extraBuildArgs = [];
+  const appDir = catalogAppDir(repo);
+  if (appDir) extraBuildArgs.push("--build-arg", `CATALOG_APP_DIR=${appDir}`);
+  const buildCmd = catalogAppBuildCmd(repo);
+  if (buildCmd) extraBuildArgs.push("--build-arg", `CATALOG_APP_BUILD_CMD=${buildCmd}`);
+  const artifactDir = catalogAppArtifactDir(repo);
+  if (artifactDir)
+    extraBuildArgs.push("--build-arg", `CATALOG_APP_ARTIFACT_DIR=${artifactDir}`);
   const dockerArgs = [
     "build",
     "-f",
@@ -50,6 +63,7 @@ for (const repo of repos) {
     `REPO=${repo}`,
     "--build-arg",
     "CATALOG_APP_STRICT_BUILD=1",
+    ...extraBuildArgs,
     "-t",
     tag,
     context,

@@ -34,7 +34,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://dwani-ai-asr-indic-server.localhost/docs",
       "docsUrl": "https://github.com/dwani-ai/asr-indic-server",
       "subdomain": "dwani-ai-asr-indic-server"
     },
@@ -70,7 +70,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://dwani-ai-docs-indic-server.localhost/",
       "docsUrl": "https://github.com/dwani-ai/docs-indic-server",
       "subdomain": "dwani-ai-docs-indic-server"
     },
@@ -106,7 +106,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://dwani-ai-dwani-api-server.localhost/docs",
       "docsUrl": "https://github.com/dwani-ai/dwani-api-server",
       "subdomain": "dwani-ai-dwani-api-server"
     },
@@ -154,7 +154,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://dwani-ai-llm-indic-server.localhost/docs",
       "docsUrl": "https://github.com/dwani-ai/llm-indic-server",
       "subdomain": "dwani-ai-llm-indic-server"
     },
@@ -178,7 +178,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://dwani-ai-sanjeevini.localhost/",
       "docsUrl": "https://github.com/dwani-ai/sanjeevini",
       "subdomain": "dwani-ai-sanjeevini"
     },
@@ -214,7 +214,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://dwani-ai-tts-indic-server.localhost/docs",
       "docsUrl": "https://github.com/dwani-ai/tts-indic-server",
       "subdomain": "dwani-ai-tts-indic-server"
     },
@@ -256,13 +256,13 @@
     },
     {
       "id": "sachinsshetty-agent-beats-dwani-discovery",
-      "title": "Agent Beats Dwani Discovery",
+      "title": "Agent Beats (discovery)",
       "repo": "sachinsshetty/agent-beats-dwani-discovery",
       "categories": [
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://sachinsshetty-agent-beats-dwani-discovery.localhost/",
       "docsUrl": "https://github.com/sachinsshetty/agent-beats-dwani-discovery",
       "subdomain": "sachinsshetty-agent-beats-dwani-discovery"
     },
@@ -286,7 +286,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://sachinsshetty-biryani-bot.localhost/",
       "docsUrl": "https://github.com/sachinsshetty/biryani_bot",
       "subdomain": "sachinsshetty-biryani-bot"
     },
@@ -334,7 +334,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://sachinsshetty-faster-whisper-server.localhost/docs",
       "docsUrl": "https://github.com/sachinsshetty/faster-whisper-server",
       "subdomain": "sachinsshetty-faster-whisper-server"
     },
@@ -352,13 +352,13 @@
     },
     {
       "id": "sachinsshetty-inference-hackathon",
-      "title": "Inference Hackathon",
+      "title": "Inference hackathon",
       "repo": "sachinsshetty/inference_hackathon",
       "categories": [
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://sachinsshetty-inference-hackathon.localhost/",
       "docsUrl": "https://github.com/sachinsshetty/inference_hackathon",
       "subdomain": "sachinsshetty-inference-hackathon"
     },
@@ -412,13 +412,13 @@
     },
     {
       "id": "sachinsshetty-openclaw",
-      "title": "Openclaw",
+      "title": "OpenClaw",
       "repo": "sachinsshetty/openclaw",
       "categories": [
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://sachinsshetty-openclaw.localhost/",
       "docsUrl": "https://github.com/sachinsshetty/openclaw",
       "subdomain": "sachinsshetty-openclaw"
     },
@@ -496,13 +496,13 @@
     },
     {
       "id": "sachinsshetty-track-me-not",
-      "title": "Track Me Not",
+      "title": "Track me not",
       "repo": "sachinsshetty/track-me-not",
       "categories": [
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://sachinsshetty-track-me-not.localhost/",
       "docsUrl": "https://github.com/sachinsshetty/track-me-not",
       "subdomain": "sachinsshetty-track-me-not"
     },
@@ -538,7 +538,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://sachinsshetty-xr-hack-gardenia.localhost/",
       "docsUrl": "https://github.com/sachinsshetty/xr-hack-gardenia",
       "subdomain": "sachinsshetty-xr-hack-gardenia"
     },
@@ -550,7 +550,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://slabstech-audiocraft-tts-server.localhost/docs",
       "docsUrl": "https://github.com/slabstech/audiocraft-tts-server",
       "subdomain": "slabstech-audiocraft-tts-server"
     },
@@ -646,7 +646,7 @@
         "ai"
       ],
       "description": null,
-      "liveUrl": null,
+      "liveUrl": "http://slabstech-parler-tts-server.localhost/docs",
       "docsUrl": "https://github.com/slabstech/parler-tts-server",
       "subdomain": "slabstech-parler-tts-server"
     },

@@ -13,9 +13,19 @@ FROM node:22-alpine AS build
 RUN apk add --no-cache python3 py3-pip ruby ruby-bundler ruby-dev make g++ git
 # Upstream repos often have imperfect peer ranges (e.g. React 18 vs a lib asking for React 19).
 ENV NPM_CONFIG_LEGACY_PEER_DEPS=true
+# Same as clone stage — used by build.sh fallbacks when compose build-args are missing (stale images).
+ARG REPO=
+ENV CLONE_REPO=$REPO
 # 1 = fail if install/build produces no static output (use with verify:catalog-apps). Default: lenient for prod.
 ARG CATALOG_APP_STRICT_BUILD=0
 ENV CATALOG_APP_STRICT_BUILD=$CATALOG_APP_STRICT_BUILD
+# Optional: force Node app root (e.g. ui/, sanjeevini-ui/) and/or custom build command (see simple-deploy-repos.mjs).
+ARG CATALOG_APP_DIR=
+ARG CATALOG_APP_BUILD_CMD=
+ARG CATALOG_APP_ARTIFACT_DIR=
+ENV CATALOG_APP_DIR=$CATALOG_APP_DIR
+ENV CATALOG_APP_BUILD_CMD=$CATALOG_APP_BUILD_CMD
+ENV CATALOG_APP_ARTIFACT_DIR=$CATALOG_APP_ARTIFACT_DIR
 WORKDIR /src
 COPY --from=clone /work/repo ./
 COPY build.sh /src/build.sh
@@ -24,6 +34,10 @@ COPY talk-apiClient.js /opt/talk-apiClient.js
 COPY talk-audio.js /opt/talk-audio.js
 COPY talk-session.js /opt/talk-session.js
 COPY overlay-vision-benchmarks-mkdocs.yml /opt/overlay-vision-benchmarks-mkdocs.yml
+COPY overlay-agent-beats-dwani-discovery-mkdocs.yml /opt/overlay-agent-beats-dwani-discovery-mkdocs.yml
+COPY overlay-biryani-bot-mkdocs.yml /opt/overlay-biryani-bot-mkdocs.yml
+COPY overlay-inference-hackathon-mkdocs.yml /opt/overlay-inference-hackathon-mkdocs.yml
+COPY overlay-docs-indic-server-mkdocs.yml /opt/overlay-docs-indic-server-mkdocs.yml
 RUN chmod +x /src/build.sh && /src/build.sh
 
 FROM nginx:1.27-alpine

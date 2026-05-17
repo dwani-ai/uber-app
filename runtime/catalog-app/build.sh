@@ -5,6 +5,17 @@ set -eu
 ROOT=/src
 cd "$ROOT"
 
+# When docker-compose build `args:` omit CATALOG_* (old compose, cached build), still pick the right app dir / command.
+case "${CLONE_REPO:-}" in
+  sachinsshetty/xr-hack-gardenia)
+    CATALOG_APP_DIR=${CATALOG_APP_DIR:-frontend}
+    CATALOG_APP_BUILD_CMD=${CATALOG_APP_BUILD_CMD:-npx vite build}
+    ;;
+  dwani-ai/dwani-ai.github.io)
+    CATALOG_APP_BUILD_CMD=${CATALOG_APP_BUILD_CMD:-npx vite build}
+    ;;
+esac
+
 artifact_copy() {
   base="$1"
   if [ ! -d "$base" ]; then return 1; fi
@@ -49,11 +60,36 @@ if [ ! -f "$ROOT/mkdocs.yml" ] && [ -f "$ROOT/docs/setup.md" ] && [ -f "$ROOT/do
   cp /opt/overlay-vision-benchmarks-mkdocs.yml "$ROOT/mkdocs.yml"
 fi
 
+# sachinsshetty/agent-beats-dwani-discovery: agents/ + docs/, no mkdocs.yml (flatten into catalog_md/ for MkDocs).
+if [ ! -f "$ROOT/mkdocs.yml" ] && [ -f "$ROOT/agents/README.md" ] && [ -f "$ROOT/docs/README.md" ] && [ -f /opt/overlay-agent-beats-dwani-discovery-mkdocs.yml ]; then
+  mkdir -p "$ROOT/catalog_md"
+  cp -f "$ROOT/README.md" "$ROOT/catalog_md/home.md"
+  cp -f "$ROOT/docs/README.md" "$ROOT/catalog_md/docs-hub.md"
+  cp -f "$ROOT/agents/README.md" "$ROOT/catalog_md/agents.md"
+  cp /opt/overlay-agent-beats-dwani-discovery-mkdocs.yml "$ROOT/mkdocs.yml"
+fi
+
+# sachinsshetty/biryani_bot: docs/*.md only.
+if [ ! -f "$ROOT/mkdocs.yml" ] && [ -f "$ROOT/docs/setup.md" ] && [ -f "$ROOT/docs/action.md" ] && [ -f /opt/overlay-biryani-bot-mkdocs.yml ]; then
+  cp /opt/overlay-biryani-bot-mkdocs.yml "$ROOT/mkdocs.yml"
+fi
+
+# dwani-ai/docs-indic-server: docs/*.md only (MkDocs site in UberApp; GPU API not deployed here).
+if [ ! -f "$ROOT/mkdocs.yml" ] && [ -f "$ROOT/docs/gh-200-setup.md" ] && [ -f "$ROOT/docs/user_requirements.md" ] && [ -f /opt/overlay-docs-indic-server-mkdocs.yml ]; then
+  cp /opt/overlay-docs-indic-server-mkdocs.yml "$ROOT/mkdocs.yml"
+fi
+
+# sachinsshetty/inference_hackathon: docs/*.md only.
+if [ ! -f "$ROOT/mkdocs.yml" ] && [ -f "$ROOT/docs/hackathon_guide.md" ] && [ -f "$ROOT/docs/vllm_setup.md" ] && [ -f /opt/overlay-inference-hackathon-mkdocs.yml ]; then
+  cp /opt/overlay-inference-hackathon-mkdocs.yml "$ROOT/mkdocs.yml"
+fi
+
 # MkDocs-only repos have no package.json; handle before Node discovery.
 if [ -f "$ROOT/mkdocs.yml" ]; then
   mkdir -p /artifact
   cd "$ROOT"
-  if [ -f requirements.txt ]; then
+  # App repos often ship a root requirements.txt for FastAPI/OpenCV/etc. — only use -r when it lists MkDocs.
+  if [ -f requirements.txt ] && grep -qiE '(^|[[:space:]])mkdocs' requirements.txt; then
     python3 -m pip install --no-cache-dir --break-system-packages -r requirements.txt \
       || pip3 install --no-cache-dir --break-system-packages -r requirements.txt
   else
@@ -132,16 +168,28 @@ has_build_script() {
   [ -f "$f" ] && grep -q '"build"' "$f"
 }
 
-# Prefer subdirs where many monorepos keep the SPA (order matters).
+# Prefer explicit dir from compose/verify (monorepos where root `build` is not the static site).
 try_dirs=""
-if has_build_script "."; then try_dirs="."
-fi
-for d in web frontend client app ui talk-ui dashboard/tax_ui packages/web packages/frontend; do
-  if [ -z "$try_dirs" ] && [ -d "$d" ] && has_build_script "$d"; then
-    try_dirs="$d"
-    break
+if [ -n "${CATALOG_APP_DIR:-}" ]; then
+  if [ -d "$ROOT/$CATALOG_APP_DIR" ] && has_build_script "$CATALOG_APP_DIR"; then
+    try_dirs="$CATALOG_APP_DIR"
+  elif [ "${CATALOG_APP_STRICT_BUILD:-0}" = "1" ]; then
+    echo "catalog-app: CATALOG_APP_DIR=${CATALOG_APP_DIR} missing or has no package.json build script" >&2
+    exit 1
   fi
-done
+fi
+
+# Prefer subdirs where many monorepos keep the SPA (order matters).
+if [ -z "$try_dirs" ] && has_build_script "."; then try_dirs="."
+fi
+if [ -z "$try_dirs" ]; then
+  for d in web frontend client app ui sanjeevini-ui talk-ui dashboard/tax_ui packages/web packages/frontend; do
+    if [ -d "$d" ] && has_build_script "$d"; then
+      try_dirs="$d"
+      break
+    fi
+  done
+fi
 
 # Last resort: shallow find package.json with "build" (maxdepth 4)
 if [ -z "$try_dirs" ]; then
@@ -187,20 +235,33 @@ else
   npm install --no-audit --no-fund
 fi
 
-# Alpine + musl: npm can skip Rollup optional natives (vite build); see npm/cli#4828.
-if [ -d node_modules/rollup ]; then
-  _m=$(uname -m)
-  case "$_m" in
-    aarch64|arm64) _rp="@rollup/rollup-linux-arm64-musl" ;;
-    x86_64|amd64) _rp="@rollup/rollup-linux-x64-musl" ;;
-    *) _rp="" ;;
-  esac
-  if [ -n "$_rp" ]; then
-    npm install "$_rp" --no-save --no-audit --no-fund 2>/dev/null || true
-  fi
+# Alpine + musl: npm/cli#4828 — separate installs drop optional natives or @mui/system. Install every
+# needed musl native + @mui/system (when the app uses @mui/*) in a single `npm install`.
+_m=$(uname -m)
+case "$_m" in
+  aarch64|arm64) _rp="@rollup/rollup-linux-arm64-musl"; _swc="@swc/core-linux-arm64-musl" ;;
+  x86_64|amd64) _rp="@rollup/rollup-linux-x64-musl"; _swc="@swc/core-linux-x64-musl" ;;
+  *) _rp=""; _swc="" ;;
+esac
+
+set --
+if [ -d node_modules/rollup ] && [ -n "$_rp" ]; then
+  set -- "$@" "$_rp"
+fi
+if [ -d node_modules/@swc/core ] && [ -n "$_swc" ]; then
+  set -- "$@" "$_swc"
+fi
+if [ -f package.json ] && grep -q '"@mui/' package.json; then
+  set -- "$@" "@mui/system"
+fi
+if [ "$#" -gt 0 ]; then
+  npm install --no-save --no-audit --no-fund "$@"
 fi
 
-if [ "${CATALOG_APP_STRICT_BUILD:-0}" = "1" ]; then
+# Curated compose overrides (vite-only, etc.): must succeed — do not hide failures or ship the stub HTML.
+if [ -n "${CATALOG_APP_BUILD_CMD:-}" ]; then
+  sh -c "$CATALOG_APP_BUILD_CMD" || exit 1
+elif [ "${CATALOG_APP_STRICT_BUILD:-0}" = "1" ]; then
   if npm run build; then
     :
   elif npm run build:prod; then
@@ -220,6 +281,12 @@ fi
 # Some tools write to cwd only
 cd "$ROOT/$try_dirs"
 if artifact_copy "."; then
+  exit 0
+fi
+
+# Monorepo Vite apps may emit outside appDir (e.g. openclaw ui/ → ../dist/control-ui).
+cd "$ROOT"
+if [ -n "${CATALOG_APP_ARTIFACT_DIR:-}" ] && artifact_copy "$CATALOG_APP_ARTIFACT_DIR"; then
   exit 0
 fi
 
